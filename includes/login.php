@@ -7,7 +7,7 @@
 
     <link rel="shortcut icon" href="Images/logo.png">
     <link rel="stylesheet" href="../assets/css/normalize.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
@@ -29,7 +29,7 @@
     </section>
 
     <section class="h2__container">
-        <h2>Login.</h2>
+        <h2 class="h2-login">Login.</h2>        
     </section>
     <section class="form">
         <form action="" class="form__container">
@@ -44,10 +44,16 @@
             <div>
                 <input class="form__submit" type="submit" value="log in">
             </div>
+            
         </form>
+
+        <div class="signup-link">
+          <a href="signup.php">Or Sign up now.</a>
+        </div>
+        
     </section>
     <footer>
-    
+
     </footer>
 </body>
 </html>
