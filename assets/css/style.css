@@ -1,0 +1,106 @@
+body {
+    background:#33384D;
+    margin:0;
+}
+a, p, h1, h2, h3, label, input {
+    font-family: Roboto;
+}
+/*navigatie*/
+nav {
+    background: #28EFD4;
+    margin:0;
+    padding-top: 1em;
+}
+.nav__main {
+    display: grid;
+    grid-template-columns: 10% 20% 35% 10% 10% 10% 15%;
+
+}
+.nav__main--logo {
+    grid-column: 2;
+    display: block;
+    padding-bottom: 1em;
+}
+.nav__main--logo img {
+   width:130px;
+   text-decoration: none;
+}
+.nav__main--link {
+
+    display: block;
+}
+.nav__main--link a {
+    display: block;
+    padding-bottom: 1em;
+    color:white;
+    font-weight: 500;
+    text-decoration: none;
+
+}
+.nav__main--link1 {
+    grid-column-start: 4;
+}
+.nav__main--link2 {
+    grid-column-start: 5;
+}
+.nav__main--link3 {
+    grid-column-start: 6;
+}
+
+
+/*main*/
+.h1__container {
+    display: grid;
+    grid-template-columns: 10% 80% 10%;
+}
+.h1__container h1 {
+    grid-column-start: 2;
+    color:white;
+    font-size: 3em;
+    text-align: left;
+}
+
+.h2__container {
+    display: grid;
+    grid-template-columns: 10% 20% 10% 10% 10% 10% 20% 10%;
+    padding-top: 4em;
+}
+.h2__container h2 {
+    color:red;
+    font-size: 3em;
+    grid-column: 2 / 4;
+}
+.form {
+    display: grid;
+    grid-template-columns: 10% 20% 10% 10% 10% 10% 20% 10%;
+}
+.form__container {
+    grid-column-start: 4;
+    grid-column-end: 6;
+
+}
+.form__input label {
+    color:pink;
+    width:100%;
+    display:block;
+    padding-bottom:0.5em;
+    padding-top: 0.5em;
+}
+.form__input input {
+    color:white;
+    width:100%;
+    background:#4A4F64;
+    border:none;
+    padding: 0.7em;
+    border-radius: 1.2em;
+}
+.form__submit {
+    margin-top: 2.5em;
+    width:100px;
+    background: #28EFD4;
+    padding: 0.7em;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 1.2em;
+}
