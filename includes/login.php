@@ -24,8 +24,28 @@
         </ul>
     </nav>
 
-    
+    <section class="h1__container">
+        <h1>Welcome to Nextask, your task manager.</h1>
+    </section>
 
+    <section class="h2__container">
+        <h2>Login.</h2>
+    </section>
+    <section class="form">
+        <form action="" class="form__container">
+            <div class="form__input">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form__input">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div>
+                <input class="form__submit" type="submit" value="log in">
+            </div>
+        </form>
+    </section>
     <footer>
     
     </footer>
