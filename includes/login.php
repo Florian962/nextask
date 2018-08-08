@@ -54,9 +54,9 @@
         <section class="login">
 
             <h1>your to do app.</h1>
-            <h2>Sign in.</h2>
+            <h2>log in.</h2>
 
-            <form action="login.php" class="login__form">
+            <form autocomplete="off" action="login.php" class="login__form">
                 <div class="login__form--fields login__form--username">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username">
