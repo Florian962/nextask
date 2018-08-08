@@ -31,5 +31,10 @@
                 return false;
             }
         }
+        public function logout() {
+            $_SESSION = array();
+            session_destroy();
+            header('Location: login.php');
+        }
     }
 ?>
