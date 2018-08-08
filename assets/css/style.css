@@ -155,6 +155,16 @@ nav {
     font-size: 0.8em;
     font-weight: bold;
 }
+.registererror {
+    grid-column: 3/5;
+    margin-left: 0.5em;
+}
+.registererror p {
+    color: var(--white);
+    font-family: Roboto;
+    font-size: 0.8em;
+    font-weight: bold;
+}
 .login__form {
     grid-column: 2 / 4;
     display: grid;

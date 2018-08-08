@@ -1,4 +1,5 @@
 <?php
+
     include '../core/init.php';
     include '../includes/login.php';
     include '../includes/register.php';
@@ -31,27 +32,33 @@
         <section class="register">
 
             <h1>Welcome to Nextask.</h1>
-            <h2>Register.</h2>        
+            <h2>Register.</h2>    
 
-            <form class="register__form">
+            <?php
+                if(isset($registererror)) {
+                    echo '<div class="registererror"><p>'.$registererror.'</p></div>';
+                } 
+            ?>
+
+            <form method="post" class="register__form">
                 <div class="register__form--fields register__form--email-new">
                     <label for="email-new">Email</label>
                     <input type="email" id="email-new" name="email-new">
                 </div>
-                <div class="register__form--fields register__form--username">
+                <div class="register__form--fields register__form--username-new">
                     <label for="username-new">Username</label>
-                    <input type="text" id="username-new" name="username">
+                    <input type="text" id="username-new" name="username-new">
                 </div>
                 <div class="register__form--fields register__form--password">
                     <label for="password-new">Password</label>
-                    <input type="password" id="password-new" name="password">
+                    <input type="password" id="password-new" name="password-new">
                 </div>
-                <div class="register__form--fields register__form--repeatpassword">
-                    <label for="repeatpassword">Repeat password</label>
-                    <input type="password" id="repeatpassword" name="repeatpassword">
+                <div class="register__form--fields register__form--password-repeat">
+                    <label for="password-repeat">Repeat password</label>
+                    <input type="password" id="password-repeat" name="password-repeat">
                 </div>
                 
-                <input class="register__form--submit" type="submit" value="sign in">
+                <input class="register__form--submit" name="register" type="submit" value="sign in">
                 
             </form>
             
@@ -60,6 +67,7 @@
 
             <h1>Your to do app.</h1>
             <h2>log in.</h2>
+
             <?php
                 if(isset($error)) {
                     echo '<div class="error"><p>'.$error.'</p></div>';
