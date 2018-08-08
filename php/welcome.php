@@ -1,6 +1,7 @@
 <?php
     include '../core/init.php';
-
+    include '../includes/login.php';
+    include '../includes/register.php';
     
 ?><!DOCTYPE html>
 <html lang="en">
@@ -32,7 +33,7 @@
             <h1>Welcome to Nextask.</h1>
             <h2>Register.</h2>        
 
-            <form action="register.php" class="register__form">
+            <form class="register__form">
                 <div class="register__form--fields register__form--email-new">
                     <label for="email-new">Email</label>
                     <input type="email" id="email-new" name="email-new">

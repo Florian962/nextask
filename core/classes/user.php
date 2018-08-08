@@ -34,7 +34,7 @@
         public function logout() {
             $_SESSION = array();
             session_destroy();
-            header('Location: login.php');
+            header('Location: ../php/welcome.php');
         }
     }
 ?>
