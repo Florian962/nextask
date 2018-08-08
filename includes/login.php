@@ -1,4 +1,24 @@
-<!DOCTYPE html>
+<?php
+    if(isset($_POST['login']) && !empty($_POST['login'])){
+        $email    = $_POST['email'];
+        $password = $_POST['password'];
+
+        if(!empty($email) or !empty($password)) {
+            $email    = $getFromU->checkInput($email);
+            $password = $getFromU->checkInput($password);
+
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $error = "Invalid email format."
+            }
+            else {
+
+            }
+        }
+        else {
+            $error = "Please enter email and password.";
+        }
+    }
+?><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,9 +49,9 @@
             <h2>Register.</h2>        
 
             <form action="register.php" class="register__form">
-                <div class="register__form--fields register__form--email">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email">
+                <div class="register__form--fields register__form--email-new">
+                    <label for="email-new">Email</label>
+                    <input type="email" id="email-new" name="email-new">
                 </div>
                 <div class="register__form--fields register__form--username">
                     <label for="username-new">Username</label>
@@ -55,18 +75,23 @@
 
             <h1>your to do app.</h1>
             <h2>log in.</h2>
+            <?php
+                if(isset($error)) {
+                    echo '<p>'.$error.'</p>';
+                }
+            ?>
 
             <form autocomplete="off" action="login.php" class="login__form">
-                <div class="login__form--fields login__form--username">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username">
+                <div class="login__form--fields login__form--email">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
                 </div>
                 <div class="login__form--fields login__form--password">
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password">
                 </div>
 
-                <input class="login__form--submit" type="submit" value="login">
+                <input class="login__form--submit" name="login" type="submit" value="login">
                 <div class="whitespace">
 
                 </div>
