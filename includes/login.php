@@ -1,17 +1,22 @@
 <?php
+    include '../core/init.php';
+
     if(isset($_POST['login']) && !empty($_POST['login'])){
         $email    = $_POST['email'];
         $password = $_POST['password'];
-
+        var_dump($email);
+        
         if(!empty($email) or !empty($password)) {
             $email    = $getFromU->checkInput($email);
             $password = $getFromU->checkInput($password);
 
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $error = "Invalid email format."
+                $error = "Invalid email format.";
             }
             else {
-
+                if($getFromU->login($email, $password) === false){
+                    $error = "The email or password is incorrect.";
+                }
             }
         }
         else {
@@ -77,11 +82,11 @@
             <h2>log in.</h2>
             <?php
                 if(isset($error)) {
-                    echo '<p>'.$error.'</p>';
+                    echo '<div class="error"><p>'.$error.'</p></div>';
                 }
             ?>
 
-            <form autocomplete="off" action="login.php" class="login__form">
+            <form autocomplete="off" method="post" class="login__form">
                 <div class="login__form--fields login__form--email">
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email">

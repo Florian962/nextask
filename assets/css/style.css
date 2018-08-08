@@ -134,6 +134,16 @@ main {
     color: var(--green);
     margin-bottom: 0.5em;
 }
+.error {
+    grid-column: 2/4;
+    margin-left: 0.5em;
+}
+.error p {
+    color: var(--darkgrey);
+    font-family: Roboto;
+    font-size: 0.8em;
+    font-weight: bold;
+}
 .login__form {
     grid-column: 2 / 4;
     display: grid;
@@ -170,3 +180,4 @@ main {
     padding-left: 3.5em;
     padding-right: 3.5em;
 }
+
