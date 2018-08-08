@@ -16,7 +16,6 @@
         public function login($email, $password) {
             $stmt = $this->pdo->prepare("SELECT `user_id` FROM `users` WHERE `email` = :email AND `password` = :password");
             
-            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_STR);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
             $stmt->execute();
@@ -26,7 +25,7 @@
 
             if($count > 0) {
                 $_SESSION['user_id'] = $user->user_id;
-                header('Location: index.php');
+                header('Location: ../index.php');
             }
             else {
                 return false;

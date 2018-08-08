@@ -78,7 +78,7 @@
         </section>
         <section class="login">
 
-            <h1>your to do app.</h1>
+            <h1>Your to do app.</h1>
             <h2>log in.</h2>
             <?php
                 if(isset($error)) {
