@@ -1,8 +1,10 @@
 <?php
 
     include 'core/init.php';
-    $user_id = $_SESSION['user_id'];
 
+    /* geef userdata voor juiste session ID */
+    $user_id = $_SESSION['user_id'];
+    $user = $getFromU->userData($user_id);
     /*if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }*/
@@ -45,7 +47,7 @@
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle"><?=$username ?>, type a title for your list.</label>
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a title for your list.</label>
                     <input type="text" id="listtitle" name="listtitle">
                 </div>
 

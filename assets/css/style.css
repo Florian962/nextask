@@ -27,6 +27,9 @@ h1 {
 h2 {
     font-size: 3em;
 }
+.fat-text {
+    font-weight: bold; 
+}
 
 
 /* NAVIGATION LAYOUT */
