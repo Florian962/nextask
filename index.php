@@ -53,63 +53,18 @@
             </form>
         </section>
         <section class="lists">
-
-                <article class="list">
-                    <h3>Title.</h3>
-                    <div class="list__block">
-                        <div class="list__block--task">
-                            <p class="fat-text">Task</p>
-                        </div>
-                        <div class="list__block--duration">
-                            <p>2h & 20min</p>
-                        </div>
-                        <div class="list__block--deadline">
-                            <p>08/09/'18</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="list">
-                    <h3>Title.</h3>
-                    <div class="list__block">
-                        <div class="list__block--task">
-                            <p class="fat-text">Task</p>
-                        </div>
-                        <div class="list__block--duration">
-                            <p>2h & 20min</p>
-                        </div>
-                        <div class="list__block--deadline">
-                            <p>08/09/'18</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="list">
-                    <h3>Title.</h3>
-                    <div class="list__block">
-                        <div class="list__block--task">
-                            <p class="fat-text">Task</p>
-                        </div>
-                        <div class="list__block--duration">
-                            <p>2h & 20min</p>
-                        </div>
-                        <div class="list__block--deadline">
-                            <p>08/09/'18</p>
-                        </div>
-                    </div>
-                </article>
-                <article class="list">
-                    <h3>Title.</h3>
-                    <div class="list__block">
-                        <div class="list__block--task">
-                            <p class="fat-text">Task</p>
-                        </div>
-                        <div class="list__block--duration">
-                            <p>2h & 20min</p>
-                        </div>
-                        <div class="list__block--deadline">
-                            <p>08/09/'18</p>
-                        </div>
-                    </div>
-                </article>
+                <a href="php/list.php">
+                    <article class="list">
+                        <h3>Title.</h3>
+                            <ul class="list__block">
+                                <li class="list__block--task fat-text">Task</li>
+                                <li class="list__block--duration">2h & 20min</li>
+                                <li class="list__block--deadline">08/09/'18</li>
+                            </ul>
+                    </article>
+                </a>
+                
+                
         </section>
     <main>
     <footer>

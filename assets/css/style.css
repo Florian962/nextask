@@ -283,20 +283,19 @@ nav {
     grid-column: span 4;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
-    padding-top: 6em;
-    padding-left: 5em;
-    padding-right: 2em;
-    grid-column-gap: 2rem;
+    padding-top: 2em;
+
 }
 .list {
-    grid-column: span 6;
+    grid-column: 2/16;
+    margin-bottom: 1.5em;
 }
 .list:hover {
     cursor: pointer;
 }
 .list h3 {
     color: var(--green);
-    margin-bottom: 0.5em;
+    margin-bottom: 0.2em;
 }
 .list h3:hover {
     text-decoration: underline;
@@ -309,15 +308,16 @@ nav {
     grid-template-columns: repeat(10, 1fr);
 }
 .list__block--task {
-    grid-column: 1/6;
+    grid-column: 1/5;
 }
 .list__block--duration {
-    grid-column: 6/9;
+    grid-column: 5/9;
 }
 .list__block--deadline {
     grid-column: 9/10;
 }
-.list__block div p {
+.list__block li {
     color: var(--darkgrey);
     font-size: 0.8em;
+    list-style: none;
 }
