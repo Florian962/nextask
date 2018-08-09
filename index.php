@@ -53,16 +53,19 @@
             </form>
         </section>
         <section class="lists">
-                <a href="php/list.php">
+                
                     <article class="list">
-                        <h3>Title.</h3>
+                        <a href="#">
+                            <h3>Title.</h3>
                             <ul class="list__block">
-                                <li class="list__block--task fat-text">Task</li>
-                                <li class="list__block--duration">2h & 20min</li>
-                                <li class="list__block--deadline">08/09/'18</li>
-                            </ul>
+                                    <li class="list__block--task fat-text">Task</li>
+                                    <li class="list__block--duration">2h & 20min</li>
+                                    <li class="list__block--deadline">08/09/'18</li>
+                            </ul> 
+                        </a>
+                           
                     </article>
-                </a>
+            
                 
                 
         </section>
