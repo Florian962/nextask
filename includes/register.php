@@ -28,7 +28,8 @@
                     $registererror = "The email is already in use.";
                 }
                 else {
-
+                    $getFromU->register($username, $email, $password);
+                    header("Location: ../index.php");
                 }
             }
         }
