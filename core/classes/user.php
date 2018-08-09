@@ -13,6 +13,8 @@
             return $var;
         }
 
+        
+
         /* LOG IN FUNCTION */
         public function login($email, $password) {
             /*$password = md5($password);*/
@@ -62,6 +64,15 @@
             return (isset($_SESSION['user_id'])) ? true : false;
         }
 
+        /* USERDATA FUNCTION  */
+        public function userData($user_id) {
+            $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `user_id` = :user_id");
+            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+            $stmt->execute();
+        
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+
         /* REGISTER FUNCTION */
         public function register ($username, $email, $password) {
             $stmt = $this->pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
@@ -73,15 +84,6 @@
             /* Geeft laatst ingevoerde user id. */
             $user_id = $this->pdo->lastInsertId();
             $_SESSION['user_id'] = $user_id;
-        }
-
-        /* USERDATA FUNCTION  */
-        public function userData($user_id) {
-            $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `user_id` = :user_id");
-            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
         /* CREATE FUNCTION */

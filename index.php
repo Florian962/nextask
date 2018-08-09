@@ -1,7 +1,7 @@
 <?php
 
     include 'core/init.php';
-
+    var_dump($_SESSION['user_id']);
     /* geef userdata voor juiste session ID */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);

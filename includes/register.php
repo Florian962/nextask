@@ -33,8 +33,7 @@
                     $registererror = "The email is already in use.";
                 }
                 else {
-                    $user_id = $getFromU->register($username, $email, $password);
-                    $_SESSION['user_id'] = $user_id;
+                    $getFromU->register($username, $email, $password);
                     header("Location: ../index.php");
                 }
             }
