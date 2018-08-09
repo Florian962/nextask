@@ -13,13 +13,13 @@
             return $var;
         }
 
-        /* LOGIN FUNCTION */
+        /* LOG IN FUNCTION */
         public function login($email, $password) {
             /*$password = md5($password);*/
             $stmt = $this->pdo->prepare("SELECT `user_id` FROM `users` WHERE `email` = :email AND `password` = :password");
             
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", $password, PDO::PARAM_STR);
+            $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
             $stmt->execute();
             
             $user  = $stmt->fetch(PDO::FETCH_OBJ);
