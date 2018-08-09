@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="shortcut icon" href="Images/logo.png">
+    <link rel="shortcut icon" href="../assets/images/icon.png">
     <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">

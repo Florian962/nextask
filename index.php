@@ -1,7 +1,8 @@
 <?php
 
     include 'core/init.php';
-    var_dump($_SESSION['user_id']);
+    /*var_dump($_SESSION['user_id']);*/
+
     /* geef userdata voor juiste session ID */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
@@ -19,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="shortcut icon" href="Images/logo.png">
+    <link rel="shortcut icon" href="assets/images/icon.png">
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
@@ -47,7 +48,7 @@
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a title for your list.</label>
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a title for your new list.</label>
                     <input type="text" id="listtitle" name="listtitle">
                 </div>
 
