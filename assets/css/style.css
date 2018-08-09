@@ -10,22 +10,24 @@ html {
     box-sizing: border-box;
     font-family: Roboto, Arial;
     font-size: 1.2em;
-    height:100%;
+    margin: 0; height: 100%; overflow: hidden;
 }
 * {
     margin: 0;
     padding:0;
 }
 body {
-    margin:0;
     background: var(--darkgrey);
-    height:100%;
+    margin: 0; height: 100%; overflow: hidden;
 }
 h1 {
     font-size: 4.5em;
 }
 h2 {
     font-size: 3em;
+}
+h3 {
+    font-size: 2em;
 }
 .fat-text {
     font-weight: bold;
@@ -133,7 +135,7 @@ nav {
     grid-row: 1 / -1;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
+    padding-bottom: 10em;
 }
 .login h1 {
     grid-column: 1 / -1;
@@ -222,8 +224,7 @@ nav {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     padding-top: 5em;
-    padding-bottom: 5em;
-
+    padding-bottom: 10em;
 }
 .addlist h2 {
     grid-column: 2 / 8;
@@ -275,4 +276,48 @@ nav {
     margin-top: 1em;
     padding-left: 3.5em;
     padding-right: 3.5em;
+}
+
+/* LISTS PART */
+.lists {
+    grid-column: span 4;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    padding-top: 6em;
+    padding-left: 5em;
+    padding-right: 2em;
+    grid-column-gap: 2rem;
+}
+.list {
+    grid-column: span 6;
+}
+.list:hover {
+    cursor: pointer;
+}
+.list h3 {
+    color: var(--green);
+    margin-bottom: 0.5em;
+}
+.list h3:hover {
+    text-decoration: underline;
+}
+.list__block {
+    border-radius: 1rem;
+    background:white;
+    padding:1em;
+    display:grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+.list__block--task {
+    grid-column: 1/6;
+}
+.list__block--duration {
+    grid-column: 6/9;
+}
+.list__block--deadline {
+    grid-column: 9/10;
+}
+.list__block div p {
+    color: var(--darkgrey);
+    font-size: 0.8em;
 }

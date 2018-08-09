@@ -52,6 +52,65 @@
                 <input class="addlist__form--submit" name="addlist" type="submit" value="Add list">
             </form>
         </section>
+        <section class="lists">
+
+                <article class="list">
+                    <h3>Title.</h3>
+                    <div class="list__block">
+                        <div class="list__block--task">
+                            <p class="fat-text">Task</p>
+                        </div>
+                        <div class="list__block--duration">
+                            <p>2h & 20min</p>
+                        </div>
+                        <div class="list__block--deadline">
+                            <p>08/09/'18</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="list">
+                    <h3>Title.</h3>
+                    <div class="list__block">
+                        <div class="list__block--task">
+                            <p class="fat-text">Task</p>
+                        </div>
+                        <div class="list__block--duration">
+                            <p>2h & 20min</p>
+                        </div>
+                        <div class="list__block--deadline">
+                            <p>08/09/'18</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="list">
+                    <h3>Title.</h3>
+                    <div class="list__block">
+                        <div class="list__block--task">
+                            <p class="fat-text">Task</p>
+                        </div>
+                        <div class="list__block--duration">
+                            <p>2h & 20min</p>
+                        </div>
+                        <div class="list__block--deadline">
+                            <p>08/09/'18</p>
+                        </div>
+                    </div>
+                </article>
+                <article class="list">
+                    <h3>Title.</h3>
+                    <div class="list__block">
+                        <div class="list__block--task">
+                            <p class="fat-text">Task</p>
+                        </div>
+                        <div class="list__block--duration">
+                            <p>2h & 20min</p>
+                        </div>
+                        <div class="list__block--deadline">
+                            <p>08/09/'18</p>
+                        </div>
+                    </div>
+                </article>
+        </section>
     <main>
     <footer>
 
