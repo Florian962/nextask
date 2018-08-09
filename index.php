@@ -1,7 +1,11 @@
 <?php
 
     include 'core/init.php';
-    /*echo $_SESSION['user_id'];*/
+    $user_id = $_SESSION['user_id'];
+
+    if($getFromU->loggedIn() === false)  {
+        header('Location: php/welcome.php');
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">

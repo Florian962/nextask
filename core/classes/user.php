@@ -13,12 +13,13 @@
             return $var;
         }
 
-        /* LOGIN FUNCTINON */
+        /* LOGIN FUNCTION */
         public function login($email, $password) {
+            /*$password = md5($password);*/
             $stmt = $this->pdo->prepare("SELECT `user_id` FROM `users` WHERE `email` = :email AND `password` = :password");
             
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
+            $stmt->bindParam(":password", $password, PDO::PARAM_STR);
             $stmt->execute();
             
             $user  = $stmt->fetch(PDO::FETCH_OBJ);
@@ -55,8 +56,14 @@
             }
         }
 
+        /* CHECK IF LOGGED IN FUNCTION */
+        public function loggedIn () {
+            /* als er een session is returnt de functie true en anders fout. */
+            return (isset($_SESSION['user_id'])) ? true : false;
+        }
+
         /* REGISTER FUNCTION */
-        public function register ($username, $email, $passsord) {
+        public function register ($username, $email, $password) {
             $stmt = $this->pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
             $stmt->bindParam(":username", $email, PDO::PARAM_STR);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
