@@ -65,7 +65,7 @@
         /* REGISTER FUNCTION */
         public function register ($username, $email, $password) {
             $stmt = $this->pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
-            $stmt->bindParam(":username", $email, PDO::PARAM_STR);
+            $stmt->bindParam(":username", $username, PDO::PARAM_STR);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
             $stmt->execute();
