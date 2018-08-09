@@ -3,8 +3,8 @@
     if(isset($_POST['login']) && !empty($_POST['login'])){
         $email    = $_POST['email'];
         $password = $_POST['password'];
-        
-        var_dump($password);
+
+        /*var_dump($password);*/
         if(!empty($email) or !empty($password)) {
             $email    = $getFromU->checkInput($email);
             $password = $getFromU->checkInput($password);
