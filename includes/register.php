@@ -34,9 +34,10 @@
                 }
                 else {
                     $getFromU->register($username, $email, $password);
+
                     header("Location: ../index.php");
                 }
-            }
+            } 
         }
     }
 ?>

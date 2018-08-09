@@ -10,9 +10,6 @@
         header('Location: php/welcome.php');
     }*/
 
-    $getFromU->update('users', $user_id, array('username' => 'florienew', 'email' => 'florienew@gmail?com'));
-
-
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +51,6 @@
 
                 <input class="addlist__form--submit" name="addlist" type="submit" value="Add list">
             </form>
-        </section>
         </section>
     <main>
     <footer>
