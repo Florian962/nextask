@@ -3,9 +3,12 @@
     include 'core/init.php';
     $user_id = $_SESSION['user_id'];
 
-    if($getFromU->loggedIn() === false)  {
+    /*if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
-    }
+    }*/
+
+    $getFromU->update('users', $user_id, array('username' => 'florienew', 'email' => 'florienew@gmail?com'));
+
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -42,7 +45,7 @@
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Type a title for your list.</label>
+                    <label for="listtitle"><?=$username ?>, type a title for your list.</label>
                     <input type="text" id="listtitle" name="listtitle">
                 </div>
 
