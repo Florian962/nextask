@@ -19,7 +19,7 @@
                 echo'
                 <article class="list">
                 <a href="#" class="list__title"><h3>'.$list->listtitle.'</h3></a>
-                <a href="php/listdelete.php" class="list__delete"><img src="assets/images/bin.png" alt="bin" class="bin"></a>
+                <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="assets/images/bin.png" alt="bin" class="bin"></a>
                 <a href="#" class="list__tasks">
                     <ul class="list__block">
                             <li class="list__block--task fat-text">Task</li>
