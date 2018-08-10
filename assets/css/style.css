@@ -10,7 +10,7 @@ html {
     box-sizing: border-box;
     font-family: Roboto, Arial;
     font-size: 1.2em;
-    margin: 0; height: 100%; overflow: hidden;
+    margin: 0; height: 100%;
 }
 * {
     margin: 0;
@@ -18,7 +18,7 @@ html {
 }
 body {
     background: var(--darkgrey);
-    margin: 0; height: 100%; overflow: hidden;
+    margin: 0; height: 100%;
 }
 h1 {
     font-size: 4.5em;

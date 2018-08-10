@@ -2,9 +2,9 @@
 
     include 'core/init.php';
     /*var_dump($_SESSION['user_id']);*/
-
     /* geef userdata voor juiste session ID */
     $user_id = $_SESSION['user_id'];
+    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     /*if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
@@ -67,31 +67,9 @@
             </form>
         </section>
         <section class="lists">
-                
-                    <article class="list">
-                        <a href="#">
-                            <h3>Title.</h3>
-                            <ul class="list__block">
-                                    <li class="list__block--task fat-text">Task</li>
-                                    <li class="list__block--duration">2h & 20min</li>
-                                    <li class="list__block--deadline">08/09/'18</li>
-                            </ul> 
-                        </a>
-                           
-                    </article>
-            
-                    <article class="list">
-                        <a href="#">
-                            <h3>Title.</h3>
-                            <ul class="list__block">
-                                    <li class="list__block--task fat-text">Task</li>
-                                    <li class="list__block--duration">2h & 20min</li>
-                                    <li class="list__block--deadline">08/09/'18</li>
-                            </ul> 
-                        </a>
-                           
-                    </article>
-                
+                    <?php
+                        $getFromL->lists($user_id, $listBy);
+                    ?>                
         </section>
     <main>
     <footer>

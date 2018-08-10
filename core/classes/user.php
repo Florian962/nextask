@@ -1,7 +1,9 @@
 <?php
     class User {
+        /* nu kunnen alle klassen ook aan deze conn die deze klasse extenden */
         protected $pdo;
 
+        /* zo kan deze klasse aan de db. */
         function __construct($pdo){
             $this->pdo = $pdo;
         }
