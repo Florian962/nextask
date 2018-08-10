@@ -10,6 +10,20 @@
         header('Location: php/welcome.php');
     }*/
 
+    if(isset($_POST['addlist'])) {
+        $listtitle = $getFromU->checkInput($_POST['listtitle']);
+
+        if(!empty($listtitle)) {
+            if(strlen($listtitle) > 40) {
+                $listerror = "Fill in a title with less than 40 characters.";
+            }
+            $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i')));
+        }
+        else {
+            $listerror = "Please fill in a title for your list.";
+        }
+    }
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
