@@ -17,17 +17,17 @@
 
             foreach($lists as $list) {
                 echo'
-                    <article class="list">
-                        <a href="#">
-                            <h3>'.$list->listtitle.'</h3>
-                            <ul class="list__block">
-                                    <li class="list__block--task fat-text">Task</li>
-                                    <li class="list__block--duration">2h & 20min</li>
-                                    <li class="list__block--deadline">08/09/18</li>
-                            </ul> 
-                        </a>
-                    
-                    </article>
+                <article class="list">
+                <a href="#" class="list__title"><h3>'.$list->listtitle.'</h3></a>
+                <a href="#" class="list__delete"><img src="assets/images/bin.png" alt="bin" class="bin"></a>
+                <a href="#" class="list__tasks">
+                    <ul class="list__block">
+                            <li class="list__block--task fat-text">Task</li>
+                            <li class="list__block--duration">2h & 20min</li>
+                            <li class="list__block--deadline">08/09/18</li>
+                    </ul> 
+                </a>                 
+        </article>    
                 ';
             }
         }

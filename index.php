@@ -50,6 +50,7 @@
     <main class="homepage">
         <section class="addlist">
 
+            
             <h2>Add a list.</h2>
             <?php
                 if(isset($listerror)) {
@@ -69,7 +70,8 @@
         <section class="lists">
                     <?php
                         $getFromL->lists($user_id, $listBy);
-                    ?>                
+                    ?>      
+          
         </section>
     <main>
     <footer>

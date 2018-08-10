@@ -290,21 +290,38 @@ nav {
     grid-column: 2/16;
     margin-bottom: 5em;
     text-decoration: none;
+    display:grid;
+    grid-template-columns: repeat(20, 1fr);
 }
-.list a{
+.list__title{
+    grid-column: span 19;
     text-decoration: none;
+    color: var(--green);
+}
+.list__delete{
+    grid-column: span 1;
+    text-decoration: none;
+    color: var(--green);
 }
 .list:hover {
     cursor: pointer;
 }
-.list h3 {
+.list a h3 {
     color: var(--green);
     margin-bottom: 0.2em;
 }
-.list h3:hover {
+.list a h3:hover {
     text-decoration: underline;
 }
+.bin {
+    width: 30px;
+    margin-top: 8px;
+}
+.list__tasks {
+    grid-column: span 20;
+}
 .list__block {
+
     border-radius: 1rem;
     background:white;
     padding:1em;
