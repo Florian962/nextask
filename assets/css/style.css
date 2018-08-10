@@ -288,7 +288,7 @@ nav {
 }
 .list {
     grid-column: 2/16;
-    margin-bottom: 1.5em;
+    margin-bottom: 5em;
     text-decoration: none;
 }
 .list a{
