@@ -17,7 +17,7 @@
             if(strlen($listtitle) > 40) {
                 $listerror = "Fill in a title with less than 40 characters.";
             }
-            $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i')));
+            $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
         }
         else {
             $listerror = "Please fill in a title for your list.";

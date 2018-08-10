@@ -19,7 +19,7 @@
                 echo'
                 <article class="list">
                 <a href="#" class="list__title"><h3>'.$list->listtitle.'</h3></a>
-                <a href="#" class="list__delete"><img src="assets/images/bin.png" alt="bin" class="bin"></a>
+                <a href="php/listdelete.php" class="list__delete"><img src="assets/images/bin.png" alt="bin" class="bin"></a>
                 <a href="#" class="list__tasks">
                     <ul class="list__block">
                             <li class="list__block--task fat-text">Task</li>
@@ -30,6 +30,13 @@
         </article>    
                 ';
             }
+        }
+
+        public function listDelete($user_id) {
+            $stmt = $this->pdo->prepare("UPDATE `lists`,`users`  SET `listActive` = 0 WHERE `user_id` = :user_id");
+            var_dump($user_id);
+            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+            $stmt->execute();
         }
     }
 ?>
