@@ -298,6 +298,7 @@ nav {
     text-decoration: none;
     color: var(--green);
 }
+
 .list__delete{
     grid-column: span 1;
     text-decoration: none;
