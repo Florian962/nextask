@@ -35,6 +35,7 @@
     <link rel="shortcut icon" href="assets/images/icon.png">
     <link type="text/css" rel="stylesheet" href="assets/css/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
     <title>NEXTASK | Home</title>
@@ -43,7 +44,7 @@
     <nav>
         <ul class="nav">	
             <li class="nav__link"><a href="#"><img class="nav__link--logo" src="assets/images/logo.png" alt=""></a></li>
-            <li class="nav__link nav__link1"><a href="#">Home</a></li>
+            <li class="nav__link nav__link1"><a href="index.php">Home</a></li>
             <li class="nav__link nav__link2"><a href="#">My profile</a></li>
             <li class="nav__link nav__link3"><a href="php/logout.php">Log out</a></li>
         </ul>
@@ -78,5 +79,6 @@
     <footer>
 
     </footer>
+    <script src="assets/js/delete.js"></script>
 </body>
 </html>
