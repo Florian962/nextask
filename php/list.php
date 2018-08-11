@@ -9,7 +9,7 @@
     $list_id = $_GET['list_id'];
     //var_dump($list_id);
     $list = $getFromL->listData($list_id);
-
+    //var_dump($list);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,8 +55,8 @@
         </section>
         <section class="lists">
                 <article class="list">
-                    <h3><?php $list->listtitle ?></h3>
-                    <a href="#" class="list__delete" data-list="<?php $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
+                    <h3><?php echo $list->listtitle ?></h3>
+                    <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                     <a href="#" class="list__tasks">
                         <ul class="list__block">
                                 <li class="list__block--task fat-text">Task</li>
