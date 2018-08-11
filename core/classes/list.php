@@ -16,18 +16,18 @@
             $lists = $stmt->fetchAll(PDO::FETCH_OBJ);
 
             foreach($lists as $list) {
-                echo'
+                echo '
                 <article class="list">
-                <a href="'.BASE_URL.'php/list.php" class="list__title"><h3>'.$list->listtitle.'</h3></a>
-                <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>
-                <a href="#" class="list__tasks">
-                    <ul class="list__block">
-                            <li class="list__block--task fat-text">Task</li>
-                            <li class="list__block--duration">2h & 20min</li>
-                            <li class="list__block--deadline">08/09/18</li>
-                    </ul> 
-                </a>                 
-        </article>    
+                    <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
+                    <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>
+                    <a href="#" class="list__tasks">
+                        <ul class="list__block">
+                                <li class="list__block--task fat-text">Task</li>
+                                <li class="list__block--duration">2h & 20min</li>
+                                <li class="list__block--deadline">08/09/18</li>
+                        </ul> 
+                    </a>                 
+                </article>    
                 ';
             }
         }
@@ -47,13 +47,22 @@
                 $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
                 $stmt->execute();
             }
+        }
 
-            public function showlist($list_id, $user_id) {
-                $stmt = $this->pdo->prepare("SELECT * FROM `lists` WHERE `list_id` = :list_id");
-                $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-            
+        public function listData($list_id) {
+            $stmt = $this->pdo->prepare("SELECT * FROM `lists` WHERE `list_id` = :list_id");
+            $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+            $stmt->execute();
+        
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+
+        public function showlist($list_id, $user_id) {
+            $stmt = $this->pdo->prepare("SELECT * FROM `lists` WHERE `list_id` = :list_id");
+            $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+            $stmt->execute();
+
+            return $stmt->fetch(PDO::FETCH_OBJ);
         }
     }
 ?>

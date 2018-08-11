@@ -6,6 +6,10 @@
     $listBy = $user_id;
     $user = $getFromU->userData($user_id);
 
+    $list_id = $_GET['list_id'];
+    //var_dump($list_id);
+    $list = $getFromL->listData($list_id);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,9 +54,17 @@
             </form>
         </section>
         <section class="lists">
-                    <?php
-                        $getFromL->lists($user_id, $listBy);
-                    ?>      
+                <article class="list">
+                    <h3><?php $list->listtitle ?></h3>
+                    <a href="#" class="list__delete" data-list="<?php $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
+                    <a href="#" class="list__tasks">
+                        <ul class="list__block">
+                                <li class="list__block--task fat-text">Task</li>
+                                <li class="list__block--duration">2h & 20min</li>
+                                <li class="list__block--deadline">08/09/18</li>
+                        </ul> 
+                    </a>                 
+                </article>        
           
         </section>
     <main>
