@@ -81,13 +81,11 @@
                 <article class="list">
                     <h3 class="list__title"><?php echo $list->listtitle ?></h3>
                     <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
-                    <a href="#" class="list__tasks">
-                        <ul class="list__block">
+                        <div class="list__block">
                             <?php
-                                $getFromT->tasks($user_id, $listBy);
+                                $getFromT->tasks($user_id, $listBy, $list_id);
                             ?>
-                        </ul> 
-                    </a>                 
+                        </div>                  
                 </article>        
           
         </section>
