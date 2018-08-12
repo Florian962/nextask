@@ -10,6 +10,22 @@
     //var_dump($list_id);
     $list = $getFromL->listData($list_id);
     //var_dump($list);
+
+    if(isset($_POST['addtask'])) {
+        $task = $getFromU->checkInput($_POST['tasktask']);
+        $duration = $getFromU->checkInput($_POST['taskduration']);
+        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
+        //var_dump($deadline);
+        if(!empty($task) AND !empty($duration)) {
+            if(strlen($task) > 40) {
+                $taskerror = "The task is too long.";
+            }
+            $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id));
+        }
+        else {
+            $taskerror = "You forgot to fill in the task or the duration. 😅";
+        }
+    }
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,18 +63,18 @@
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list.</label>
-                    <input type="text" id="listtitle" name="listtitle">
+                    <input type="text" id="listtitle" name="tasktask">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">Fill in the duration of the task (in hours)</label>
-                    <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="listtitle">
+                    <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">And the deadline.</label>
-                    <input type="date" id="listtitle" name="listtitle">
+                    <input type="date" id="listtitle" name="taskdeadline">
                 </div>
 
-                <input class="addlist__form--submit" name="addlist" type="submit" value="Add task">
+                <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">
             </form>
         </section>
         <section class="lists">
@@ -67,9 +83,9 @@
                     <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                     <a href="#" class="list__tasks">
                         <ul class="list__block">
-                                <li class="list__block--task fat-text">Task</li>
-                                <li class="list__block--duration">2h & 20min</li>
-                                <li class="list__block--deadline">08/09/18</li>
+                            <?php
+                                $getFromT->tasks();
+                            ?>
                         </ul> 
                     </a>                 
                 </article>        
