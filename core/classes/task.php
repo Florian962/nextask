@@ -8,10 +8,11 @@
             $this->pdo = $pdo;
         }
 
-        public function tasks($user_id, $listBy) {
-            $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy");
+        public function tasks($user_id, $listBy, $list_id) {
+            $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
             $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
+            $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
             $stmt->execute();
 
             $tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -19,9 +20,9 @@
             foreach ($tasks as $task) {
                 echo '
                     
-                        <li class="list__block--task fat-text">'.$task->task.'</li>
-                        <li class="list__block--duration">'.$task->duration.' hours</li>
-                        <li class="list__block--deadline">'.$task->deadline.'</li>
+                    <a class="list__block--task fat-text" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id=">'.$task->task.'</a>
+                    <a class="list__block--duration" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'">'.$task->duration.' hours</a>
+                    <a class="list__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'">'.$task->deadline.'</a>
                 ';
             }
         }
