@@ -12,21 +12,8 @@
 
     $task_id = $_GET['task_id'];
 
-    if(isset($_POST['addtask'])) {
-        $task = $getFromU->checkInput($_POST['tasktask']);
-        $duration = $getFromU->checkInput($_POST['taskduration']);
-        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
-        //var_dump($deadline);
-        if(!empty($task) AND !empty($duration)) {
-            if(strlen($task) > 40) {
-                $taskerror = "The task is too long.";
-            }
-            $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id));
-        }
-        else {
-            $taskerror = "You forgot to fill in the task or the duration. 😅";
-        }
-    }
+    $comments = $getFromT->comments($task_id);
+    //var_dump($comments);
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,11 +66,20 @@
                                 $getFromC->taskToComment($user_id, $listBy, $list_id, $task_id);
                             ?>
                             <div class="task__block--comments">
-                                <div class="comments__comment">
-                                    <img src="../assets/images/profileIcon.png" alt="profileIcon">
-                                    <p><?php ?></p>
+
+                                <?php
+                                    foreach ($comments as $comment) {
+                                        echo '
+                                        <div class="comments__comment">
+                                            <img src="../assets/images/profileIcon.png" alt="profileIcon">
+                                            <p>'.$comment->comment.'</p>
+                                            <div></div>
+                                        </div>
+                                        
+                                        ';
+                                    }
+                                ?>
                                 </div>
-                                
                             </div>
                         </div>            
                 </article>        

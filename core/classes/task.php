@@ -26,6 +26,14 @@
                 ';
             }
         }
+
+        public function comments($task_id) {
+            $stmt = $this->pdo->prepare("SELECT * FROM `comments` LEFT JOIN `users` ON `commentBy` = `user_id` WHERE `commentOn` = :task_id");
+            $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
         
 
     }
