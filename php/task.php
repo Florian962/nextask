@@ -7,7 +7,7 @@
     $user = $getFromU->userData($user_id);
 
     $list_id = $_GET['list_id'];
-    var_dump($list_id);
+    //var_dump($list_id);
     $list = $getFromL->listData($list_id);
 
     $task_id = $_GET['task_id'];
