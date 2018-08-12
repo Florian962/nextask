@@ -24,6 +24,7 @@
     <link rel="shortcut icon" href="../assets/images/icon.png">
     <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
     <title>NEXTASK | Task</title>
@@ -51,10 +52,10 @@
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a comment on this task.</label>
-                    <input type="text" id="listtitle" name="comment">
+                    <input data-task="<?php echo $task_id ?>" class="commentText" type="text" id="listtitle" name="comment">
                 </div>
 
-                <input class="addlist__form--submit" name="addcomment" type="submit" value="Add comment">
+                <input id="postComment" class="addlist__form--submit" name="addcomment" type="submit" value="Add comment">
             </form>
         </section>
         <section class="lists">
@@ -89,5 +90,6 @@
     <footer>
 
     </footer>
+    <script src="../assets/js/comment.js"></script>
 </body>
 </html>
