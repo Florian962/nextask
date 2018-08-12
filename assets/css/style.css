@@ -359,4 +359,25 @@ nav {
     background: var(--green);
     grid-column: 1 / -1;
     border-radius: 1em;
+    
+}
+.comments__comment {
+    display:grid;
+    grid-template-columns: 100px 1fr 1fr;
+    justify-items: start;
+}
+.comments__comment img {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+.comments__comment p {
+    background: white;
+    border-radius: 1em;
+    margin-right: 1em;
+    margin-top: 1em;
+    font-size: 0.8em;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
