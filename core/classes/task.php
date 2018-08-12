@@ -20,7 +20,7 @@
             foreach ($tasks as $task) {
                 echo '
                     
-                    <a class="list__block--task fat-text" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id=">'.$task->task.'</a>
+                    <a class="list__block--task fat-text" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->task.'</a>
                     <a class="list__block--duration" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'">'.$task->duration.' hours</a>
                     <a class="list__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'">'.$task->deadline.'</a>
                 ';
