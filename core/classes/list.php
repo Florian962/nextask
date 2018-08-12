@@ -21,11 +21,11 @@
                     <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
                     <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>
                     <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__tasks">
-                        <ul class="list__block">
-                                <li class="list__block--task fat-text">Task</li>
-                                <li class="list__block--duration">2h & 20min</li>
-                                <li class="list__block--deadline">08/09/18</li>
-                        </ul> 
+                        <div class="list__block">
+                                <a href="" class="list__block--task fat-text">Task</a>
+                                <a href="" class="list__block--duration">2h & 20min</a>
+                                <a href="" class="list__block--deadline">08/09/18</a>
+                        </div> 
                     </a>                 
                 </article>    
                 ';
