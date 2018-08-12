@@ -232,7 +232,7 @@ nav {
     margin-bottom: 0.5em;
 }
 .listerror {
-    grid-column: 2/4;
+    grid-column: 2/8;
     margin-left: 0.5em;
 }
 .listerror p {
