@@ -347,11 +347,16 @@ nav {
     grid-column: 5/9;
 }
 .list__block--deadline {
-    grid-column: 9/10;
+    grid-column: 9/11;
 }
 .list__block a {
     color: var(--darkgrey);
     font-size: 0.8em;
     list-style: none;
     text-decoration: none;
+}
+.task__block--comments {
+    background: var(--green);
+    grid-column: 1 / -1;
+    border-radius: 1em;
 }
