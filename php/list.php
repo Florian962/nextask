@@ -84,7 +84,7 @@
                     <a href="#" class="list__tasks">
                         <ul class="list__block">
                             <?php
-                                $getFromT->tasks();
+                                $getFromT->tasks($user_id, $listBy);
                             ?>
                         </ul> 
                     </a>                 
