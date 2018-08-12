@@ -78,6 +78,13 @@
                             <?php
                                 $getFromC->taskToComment($user_id, $listBy, $list_id, $task_id);
                             ?>
+                            <div class="task__block--comments">
+                                <div class="comments__comment">
+                                    <img src="../assets/images/profileIcon.png" alt="profileIcon">
+                                    <p><?php ?></p>
+                                </div>
+                                
+                            </div>
                         </div>            
                 </article>        
           
