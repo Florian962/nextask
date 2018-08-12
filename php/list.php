@@ -49,6 +49,14 @@
                     <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list.</label>
                     <input type="text" id="listtitle" name="listtitle">
                 </div>
+                <div class="addlist__form--fields addlist__form--listtitle">
+                    <label for="listtitle">Fill in the duration of the task (in hours)</label>
+                    <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="listtitle">
+                </div>
+                <div class="addlist__form--fields addlist__form--listtitle">
+                    <label for="listtitle">And the deadline.</label>
+                    <input type="date" id="listtitle" name="listtitle">
+                </div>
 
                 <input class="addlist__form--submit" name="addlist" type="submit" value="Add task">
             </form>

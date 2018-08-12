@@ -265,6 +265,9 @@ nav {
     color: var(--darkgrey);
     font-family: Roboto;
 }
+.input__duration {
+    grid-column: 1fr;
+}
 .addlist__form--submit {
     grid-column: span 1;
     background: var(--green);
