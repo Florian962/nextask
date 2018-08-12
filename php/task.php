@@ -38,7 +38,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
-    <title>NEXTASK | List</title>
+    <title>NEXTASK | Task</title>
 </head>
 <body>
     <nav>
@@ -53,28 +53,20 @@
         <section class="addlist">
 
             
-            <h2>Add tasks to your list.</h2>
+            <h2>Add a comment to this task.</h2>
             <?php
-                if(isset($taskerror)) {
+                if(isset($commenterror)) {
                     echo '<div class="listerror"><p>'.$taskerror.'</p></div>';
                 }
             ?>
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list.</label>
-                    <input type="text" id="listtitle" name="tasktask">
-                </div>
-                <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Fill in the duration of the task (in hours)</label>
-                    <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
-                </div>
-                <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">And the deadline.</label>
-                    <input type="date" id="listtitle" name="taskdeadline">
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a comment on this task.</label>
+                    <input type="text" id="listtitle" name="comment">
                 </div>
 
-                <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">
+                <input class="addlist__form--submit" name="addcomment" type="submit" value="Add comment">
             </form>
         </section>
         <section class="lists">
