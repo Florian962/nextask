@@ -325,7 +325,15 @@ nav {
     grid-column: span 20;
 }
 .list__block {
-
+    grid-column: span 20;
+    border-radius: 1rem;
+    background:white;
+    padding:1em;
+    display:grid;
+    grid-template-columns: repeat(10, 1fr);
+}
+.task__block {
+    grid-column: span 20;
     border-radius: 1rem;
     background:white;
     padding:1em;
@@ -341,8 +349,9 @@ nav {
 .list__block--deadline {
     grid-column: 9/10;
 }
-.list__block li {
+.list__block a {
     color: var(--darkgrey);
     font-size: 0.8em;
     list-style: none;
+    text-decoration: none;
 }
