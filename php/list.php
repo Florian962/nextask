@@ -55,7 +55,7 @@
         </section>
         <section class="lists">
                 <article class="list">
-                    <h3 class="list__title2"><?php echo $list->listtitle ?></h3>
+                    <h3 class="list__title"><?php echo $list->listtitle ?></h3>
                     <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                     <a href="#" class="list__tasks">
                         <ul class="list__block">
