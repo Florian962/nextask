@@ -1,7 +1,7 @@
 <?php
     include '../init.php';
-    if(isset($_POST['addcomment']) && !empty($_POST['addcomment'])){
-        $comment = $getFromU->checkInput($_POST['addcomment']);
+    if(isset($_POST['comment']) && !empty($_POST['comment'])){
+        $comment = $getFromU->checkInput($_POST['comment']);
         $user_id = $_SESSION['user_id'];
         $task_id = $_POST['task_id'];
 

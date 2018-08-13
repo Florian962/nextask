@@ -11,7 +11,7 @@
     $list = $getFromL->listData($list_id);
 
     $task_id = $_GET['task_id'];
-
+    
     $comments = $getFromT->comments($task_id);
     //var_dump($comments);
 ?><!DOCTYPE html>
