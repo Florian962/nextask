@@ -11,7 +11,7 @@
     $list = $getFromL->listData($list_id);
 
     $task_id = $_GET['task_id'];
-    
+
     $comments = $getFromT->comments($task_id);
     //var_dump($comments);
 ?><!DOCTYPE html>
@@ -52,7 +52,7 @@
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a comment on this task.</label>
-                    <input data-task="<?php echo $task_id ?>" class="commentText" type="text" id="listtitle" name="comment">
+                    <input data-list="<?php echo $list_id ?>" data-task="<?php echo $task_id ?>" class="commentText" type="text" id="listtitle" name="comment">
                 </div>
 
                 <input id="postComment" class="addlist__form--submit" name="addcomment" type="submit" value="Add comment">
