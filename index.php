@@ -13,6 +13,7 @@
 
     if(isset($_POST['addlist'])) {
         $listtitle = $getFromU->checkInput($_POST['listtitle']);
+        $listtitle = ucfirst($listtitle).'.';
 
         if(!empty($listtitle)) {
             if(strlen($listtitle) > 40) {
