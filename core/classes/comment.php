@@ -25,10 +25,10 @@
                         <p class="task__block--duration">'.$task->duration.' hours</p>
                         ';
                         if($task->deadline != 0) {
-                            echo '<p class="task__block--deadline>'.$task->deadline.'</p>';
+                            echo '<p class="task__block--deadline">'.$task->deadline.'</p>';
                         }
                 echo '
-                        <a class="task__block--status" href="">TO DO</a>  
+                        <a class="task__block--status" href="#">TO DO</a>  
                     </div>  
                 ';
             }
