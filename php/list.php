@@ -13,6 +13,8 @@
 
     if(isset($_POST['addtask'])) {
         $task = $getFromU->checkInput($_POST['tasktask']);
+        $task = ucfirst($task);
+        
         $duration = $getFromU->checkInput($_POST['taskduration']);
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
         //var_dump($deadline);
