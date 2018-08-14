@@ -70,7 +70,7 @@
                     <input type="text" id="listtitle" name="tasktask">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Fill in the duration of the task (in hours)</label>
+                    <label for="listtitle">Fill in the duration of the task (in hours).</label>
                     <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
@@ -84,7 +84,7 @@
         <section class="lists">
                 <article class="list">
                     <h3 class="task__title"><a href="list.php?list_id=<?php echo $list->list_id ?>"><?php echo $list->listtitle ?></a></h3>
-                    <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
+                    <a href="../index.php" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                         <div class="task__block">
                             <?php
                                 $getFromT->tasks($user_id, $listBy, $list_id);
