@@ -74,8 +74,8 @@
                     <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">And the deadline.</label>
-                    <input type="date" id="listtitle" name="taskdeadline">
+                    <label for="taskdeadline">And the deadline.</label>
+                    <input type="date" min="01-01-2018" id="taskdeadline" name="taskdeadline" class="mindate">
                 </div>
 
                 <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">
@@ -98,5 +98,6 @@
 
     </footer>
     <script src="../assets/js/delete.js"></script>
+    <script src="../assets/js/mindate.js"></script>
 </body>
 </html>
