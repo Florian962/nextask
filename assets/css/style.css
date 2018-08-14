@@ -1,6 +1,7 @@
 /* PRE-SETTINGS */
 :root {
     --green:#28EFD4;
+    --darkgreen: rgb(9, 139, 122);
     --grey:#4A4F64;
     --darkgrey:#33384D;
     --white: #ffffff;
@@ -125,8 +126,13 @@ nav {
     padding: 0.5em;
     margin-left: 0.8em;
     margin-top: 1em;
+    cursor:pointer;   
+    transition: all ease-in-out 0.5s; 
 }
-
+.register__form--submit:hover {
+    background: white;
+    color:var(--darkgrey);
+}
 
 /* LOGIN PART LAYOUT */
 .login {
@@ -205,8 +211,13 @@ nav {
     margin-top: 1em;
     padding-left: 3.5em;
     padding-right: 3.5em;
+    cursor:pointer;   
+    transition: all ease-in-out 0.5s; 
 }
-
+.login__form--submit:hover {
+    background: var(--darkgrey);
+    color: var(--white);
+}
 
 /* HOMEPAGE LAYOUT */
 .homepage {
@@ -317,6 +328,29 @@ nav {
     text-decoration: none;
     color: var(--green);
 }
+.list__delete:hover {
+    animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  @keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-3px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(3px, 0, 0);
+    }
+  }
 .list:hover {
     cursor: pointer;
 }
