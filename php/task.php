@@ -91,5 +91,6 @@
 
     </footer>
     <script src="../assets/js/comment.js"></script>
+    <script src="../assets/js/delete.js"></script>
 </body>
 </html>

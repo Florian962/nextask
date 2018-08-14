@@ -37,6 +37,7 @@
     <link rel="shortcut icon" href="../assets/images/icon.png">
     <link type="text/css" rel="stylesheet" href="../assets/css/style.css">
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
     <title>NEXTASK | List</title>
@@ -94,5 +95,6 @@
     <footer>
 
     </footer>
+    <script src="../assets/js/delete.js"></script>
 </body>
 </html>
