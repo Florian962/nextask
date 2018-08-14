@@ -23,7 +23,12 @@
                     
                     <p class="list__block--task fat-text">'.$task->task.'</p>
                     <p class="list__block--duration">'.$task->duration.' hours</p>
-                    <p class="list__block--deadline">'.$task->deadline.'</p>
+                ';
+                if($task->deadline != 0) {
+                    echo '<p class="list__block--deadline>'.$task->deadline.'</p>';
+                }
+                echo '
+                    <p class="list__block--status" >TO DO</p>    
                 ';
             }
         }
