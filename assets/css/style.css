@@ -334,6 +334,7 @@ nav {
     text-decoration: none;
     color: var(--green);
 }
+/* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
 .list__delete:hover {
     animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
