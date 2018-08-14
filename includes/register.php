@@ -12,6 +12,7 @@
         }
         else {
             $username = $getFromU->checkInput($username);
+            $username = ucfirst($username);
             $email    = $getFromU->checkInput($email);
             $password = $getFromU->checkInput($password);
             $passwordrepeat = $getFromU->checkInput($passwordrepeat);
