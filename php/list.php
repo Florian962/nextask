@@ -16,6 +16,7 @@
         $duration = $getFromU->checkInput($_POST['taskduration']);
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
         //var_dump($deadline);
+
         if(!empty($task) AND !empty($duration)) {
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
