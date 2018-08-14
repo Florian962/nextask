@@ -2,6 +2,7 @@
     include '../init.php';
     if(isset($_POST['comment']) && !empty($_POST['comment'])){
         $comment = $getFromU->checkInput($_POST['comment']);
+        $comment = ucfirst($comment).'.';
         $user_id = $_SESSION['user_id'];
         $listBy = $user_id;
 
