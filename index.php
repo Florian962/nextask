@@ -6,9 +6,9 @@
     $user_id = $_SESSION['user_id'];
     $listBy = $user_id;
     $user = $getFromU->userData($user_id);
-    /*if($getFromU->loggedIn() === false)  {
+    if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
-    }*/
+    }
     $getFromU->delete('lists', array('list_id' => '6'));
 
     if(isset($_POST['addlist'])) {

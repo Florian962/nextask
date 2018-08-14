@@ -42,7 +42,7 @@
         public function logout() {
             $_SESSION = array();
             session_destroy();
-            header('Location: ../php/welcome.php');
+            header('Location: ../../php/welcome.php');
         }
 
         /* Checkt of de email al in de db staat. */
