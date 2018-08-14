@@ -290,6 +290,12 @@ nav {
     margin-top: 1em;
     padding-left: 3.5em;
     padding-right: 3.5em;
+    cursor:pointer;   
+    transition: all ease-in-out 0.5s; 
+}
+.addlist__form--submit:hover {
+    background: var(--darkgrey);
+    color: var(--white);
 }
 
 /* LISTS PART */
