@@ -301,7 +301,17 @@ nav {
     text-decoration: none;
     color: var(--green);
 }
+.task__title {
+    grid-column: span 19;
+}
+.task__title:hover {
+    text-decoration: underline;
+}
+.task__title a{
+    text-decoration: none;
+    color: var(--green);
 
+}
 .list__delete{
     grid-column: span 1;
     text-decoration: none;
@@ -337,31 +347,75 @@ nav {
     border-radius: 1rem;
     background:white;
     padding:1em;
+    cursor: auto;
+}
+.task__block--hover {
     display:grid;
     grid-template-columns: repeat(10, 1fr);
+    padding: 0.5em;
+    border-radius: 1em;
+}
+.task__block--hover:hover {
+    background:var(--light);
+}
+.task__block--bottom {
+    margin-bottom: 1em;
 }
 .list__block--task {
     grid-column: 1/5;
     text-decoration: none;
     color: var(--darkgrey);
+    font-size: 0.8em;
 }
 .list__block--duration {
     grid-column: 5/7;
     text-decoration: none;
     color: var(--darkgrey);
+    font-size: 0.8em;
 }
 .list__block--deadline {
     grid-column: 7/8;
     text-decoration: none;
     color: var(--darkgrey);
+    font-size: 0.8em;
 }
 .list__block--status {
     grid-column: 10/11;
     font-weight: 900;
     text-decoration: none;
     color:var(--green);
+    cursor:pointer;
+    font-size: 0.8em;
 }
 .list__block--status:hover {
+    text-decoration: underline;
+}
+.task__block--task {
+    grid-column: 1/5;
+    text-decoration: none;
+    color: var(--darkgrey);
+    font-size: 0.8em;
+}
+.task__block--duration {
+    grid-column: 5/7;
+    text-decoration: none;
+    color: var(--darkgrey);
+    font-size: 0.8em;
+}
+.task__block--deadline {
+    grid-column: 7/8;
+    text-decoration: none;
+    color: var(--darkgrey);
+    font-size: 0.8em;
+}
+.task__block--status {
+    grid-column: 10/11;
+    font-weight: 900;
+    text-decoration: none;
+    color:var(--green);
+    cursor:pointer;
+}
+.task__block--status:hover {
     text-decoration: underline;
 }
 .list__block a {
@@ -379,6 +433,7 @@ nav {
     display:grid;
     grid-template-columns: 100px 1fr 1fr;
     justify-items: start;
+    padding-bottom: 1em;
 }
 .comments__comment img {
     margin-left: 1em;
