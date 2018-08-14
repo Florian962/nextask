@@ -1,4 +1,6 @@
 $(function(){
+
+    /* LIJSTEN VERWIJDEREN */
     $(document).on('click', '.list__delete', function(){
         console.log('clicked');
         var list_id = $(this).data('list');
