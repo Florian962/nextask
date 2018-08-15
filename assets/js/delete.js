@@ -12,4 +12,16 @@ $(function(){
         });
     });
 
+    /* TAKEN VERWIJDEREN */
+    $(document).on('click', '.task__delete', function(){
+        console.log('clicked');
+        var task_id = $(this).data('task');
+        //task__delete is delTarget
+        delTarget = this;
+        $.post('http://localhost/nextask/core/ajax/taskdelete.php', {deleteTask:task_id}, function(data) {
+            $(delTarget).parent().slideUp();
+            
+        });
+    });
+
 });

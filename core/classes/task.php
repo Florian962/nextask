@@ -44,19 +44,19 @@
 
         public function taskDelete($task_id, $user_id) {
             /* Eerst checken of de task bestaat */
-            $check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
+            /*$check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
             $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
             $check->execute();
 
             /* geeft een int terug die gelijk moet zijn aan de user_id */
-            $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
+           /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
 
-            if($userCheck == $user_id) {
-                $stmt = $this->pdo->prepare("UPDATE `lists` SET `listActive` = 0 WHERE `list_id` = :list_id");
+            if($userCheck == $user_id) {*/
+                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskActive` = 0 WHERE `task_id` = :task_id");
                 //var_dump($list_id);
-                $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+                $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
                 $stmt->execute();
-            }
+           /* }*/
         }
         
 
