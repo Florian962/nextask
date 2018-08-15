@@ -29,11 +29,11 @@
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
                 else {
-                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id, 'taskActive' => 1));
+                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
                 }
             }
             else {
-                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id, 'taskActive' => 1));
+                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
             }
            
         }
@@ -110,7 +110,7 @@
 
     </footer>
     <script src="../assets/js/delete.js"></script>
-
+    <script src="../assets/js/status.js"></script>
     <script src="../assets/js/mindate.js"></script>
 </body>
 </html>
