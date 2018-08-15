@@ -335,7 +335,13 @@ nav {
     color: var(--green);
 }
 /* https://css-tricks.com/snippets/css/shake-css-keyframe-animation/ */
-.list__delete:hover {
+.list__delete:hover  {
+    animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  .task__delete:hover{
     animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
@@ -450,14 +456,25 @@ nav {
     font-size: 0.8em;
 }
 .task__block--status {
-    grid-column: 10/11;
+    grid-column: 9/10;
     font-weight: 900;
     text-decoration: none;
     color:var(--green);
     cursor:pointer;
 }
+
 .task__block--status:hover {
     text-decoration: underline;
+}
+.task__delete{
+    grid-column: 10/11;
+    text-decoration: none;
+    color: var(--green);
+    justify-self: end;
+}
+.taskbin {
+    margin-top: 0;
+    width:17px;
 }
 .list__block a {
     font-size: 0.8em;

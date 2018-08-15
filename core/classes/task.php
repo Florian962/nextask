@@ -28,6 +28,7 @@
                         }
                 echo '
                         <a class="task__block--status" href="">TO DO</a>
+                        <a href="#" class="task__delete" data-list="'.$task->task_id.' "><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>
                     </div>
                 ';
             }
