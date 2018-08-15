@@ -27,8 +27,8 @@
                             echo '<a class="task__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->deadline.'</a>';
                         }
                 echo '
-                        <a class="task__block--status" href="">TO DO</a>
-                        <a href="#" class="task__delete" data-task="'.$task->task_id.' "><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>
+                        <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
+                        <a href="#" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>
                     </div>
                 ';
             }
@@ -52,13 +52,32 @@
            /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
 
             if($userCheck == $user_id) {*/
-                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskActive` = 0 WHERE `task_id` = :task_id");
+                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskActive` = :taskActive WHERE `task_id` = :task_id");
                 //var_dump($list_id);
+                $taskActive = 0;
+                $stmt->bindParam(":taskActive", $taskActive, PDO::PARAM_INT);
                 $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
                 $stmt->execute();
            /* }*/
         }
-        
 
+        public function taskStatus($task_id, $user_id) {
+            /* Eerst checken of de task bestaat */
+            /*$check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
+            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+            $check->execute();
+
+            /* geeft een int terug die gelijk moet zijn aan de user_id */
+           /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
+
+            if($userCheck == $user_id) {*/
+                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskStatus` = :task_status WHERE `task_id` = :task_id");
+                //var_dump($list_id);
+                $task_status = "DONE";
+                $stmt->bindParam(":task_status", $task_status, PDO::PARAM_STR, 10);
+                $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
+                $stmt->execute();
+           /* }*/
+        }
     }
 ?>
