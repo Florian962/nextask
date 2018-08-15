@@ -1,5 +1,4 @@
 <?php
-
     include '../init.php';
     if(isset($_POST['deleteTask']) && !empty($_POST['deleteTask'])){
         $task_id = $_POST['deleteTask'];
