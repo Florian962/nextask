@@ -19,10 +19,16 @@
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
         //var_dump($deadline);
 
-        if(!empty($task) AND !empty($duration)) {
+        if(isset($deadline)) {
+            if( strtotime($deadline) < time() ) {
+                $taskerror = "Fill in a deadline that's in the future!";
+            }
+        }
+        else if(!empty($task) AND !empty($duration)) {
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
             }
+            
             $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id));
         }
         else {
