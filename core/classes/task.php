@@ -79,5 +79,32 @@
                 $stmt->execute();
            /* }*/
         }
+
+        public function uploadImage($file) {
+            $filename  = basename($file['name']);
+            $fileTmp   = $file['tmp_name'];
+            $fileSize  = $file['size'];
+            $fileError = $file['error'];
+
+            $ext       = explode('.', $filename);
+            $ext       = strtolower(end($ext));
+            $allowed_ext = array('jpg', 'jpg', 'pdf');
+
+            if(in_array($allowed_ext) === true) {
+                if($fileError === 0) {
+                    if($fileSize <= 209272152) {
+                        $fileRoot = '../users/' . $filename;
+                        move_uploaded_file($fileTmp, $fileRoot);
+                        return $fileRoot;
+                    }
+                    else {
+                        $GLOBALS['imageError'] = "The filesize is too big.";
+                    }
+                }
+            }
+            else {
+                $GLOBALS['imageError'] = "The extension is not allowed.";
+            }
+        }
     }
 ?>

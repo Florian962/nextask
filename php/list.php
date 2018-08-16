@@ -16,34 +16,46 @@
 
     if(isset($_POST['addtask'])) {
         $task = $getFromU->checkInput($_POST['tasktask']);
+        $taskImage = '';
         $task = ucfirst($task);
         
         $duration = $getFromU->checkInput($_POST['taskduration']);
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
+        //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
-        
+        //var_dump($getFromT->uploadImage($_FILES['taskImage']));
 
         if(!empty($task) AND !empty($duration)) {
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
             }
+
             else if(!empty($deadline)) {
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
+
                 else {
-                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
+                    if(!empty($_FILES['taskImage']['name'][0])) {
+                        $taskImage = $getFromT->uploadImage($_FILES['taskImage']);                    
+                    }
+                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $taskImage,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
                 }
             }
             else {
-                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
+                if(!empty($_FILES['taskImage']['name'][0])) {
+                    $taskImage = $getFromT->uploadImage($_FILES['taskImage']);      
+                }          
+                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $taskImage, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
             }
            
         }
         else {
             $taskerror = "You forgot to fill in the task or the duration. 😅";
         }
+
     }
+    
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,16 +93,21 @@
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list.</label>
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list. *</label>
                     <input type="text" id="listtitle" name="tasktask">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Fill in the duration of the task (in hours).</label>
+                    <label for="listtitle">Fill in the duration of the task (in hours). *</label>
                     <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="taskdeadline">And the deadline.</label>
                     <input type="date" min="01-01-2018" id="taskdeadline" name="taskdeadline" class="mindate">
+                </div>
+
+                <div class="addlist__form--fields addlist__form--listtitle">
+                    <label for="taskImage">If you want, you can add a file.</label>
+                    <input type="file" id="taskImage" name="taskImage" class="taskImage">
                 </div>
 
                 <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">
