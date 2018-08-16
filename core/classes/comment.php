@@ -28,7 +28,8 @@
                             echo '<p class="task__block--deadline">'.$task->deadline.'</p>';
                         }
                 echo '
-                        <a class="task__block--status" href="#">TO DO</a>  
+                        <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
+                        <a href="list.php?list_id='.$task->list_id.'" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>  
                     </div>  
                 ';
             }

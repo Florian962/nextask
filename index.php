@@ -9,7 +9,7 @@
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
-    $getFromU->delete('lists', array('list_id' => '6'));
+    //$getFromU->delete('lists', array('list_id' => '6'));
 
     if(isset($_POST['addlist'])) {
         $listtitle = $getFromU->checkInput($_POST['listtitle']);

@@ -5,6 +5,9 @@
     $user_id = $_SESSION['user_id'];
     $listBy = $user_id;
     $user = $getFromU->userData($user_id);
+    if($getFromU->loggedIn() === false)  {
+        header('Location: php/welcome.php');
+    }
 
     $list_id = $_GET['list_id'];
     //var_dump($list_id);
