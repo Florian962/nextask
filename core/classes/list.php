@@ -20,17 +20,15 @@
                 <article class="list">
                     <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
                     <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>
-                    <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__tasks">
                         <div class="list__block">
-                                '/*. class tasks? .*/'
-                        </div> 
-                    </a>                 
+                                
+                        </div>                 
                 </article>    
                 ';
             }
         }
 
-        public function tasks($user_id, $listBy, $list_id) {
+         public function tasks($user_id, $listBy, $list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
             $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
