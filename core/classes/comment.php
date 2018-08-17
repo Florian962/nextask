@@ -32,7 +32,7 @@
                         <a href="list.php?list_id='.$task->list_id.'" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>  
                         ';
                         if(!empty($task->taskImage)) {
-                            echo '<img src="'.$task->taskImage.'" alt""></img>';
+                            echo '<img class="taskImageDisplay" src="../'.$task->taskImage.'" alt""></img>';
                         }
                 echo '
 

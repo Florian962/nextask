@@ -80,7 +80,7 @@
            /* }*/
         }
 
-        public function uploadImage($file) {
+        function uploadImage($file) {
             $filename  = basename($file['name']);
             $fileTmp   = $file['tmp_name'];
             $fileSize  = $file['size'];
@@ -90,7 +90,7 @@
             $ext       = strtolower(end($ext));
             $allowed_ext = array('jpg', 'jpg', 'pdf');
 
-            if(in_array($allowed_ext) === true) {
+            if(in_array($ext, $allowed_ext) === true) {
                 if($fileError === 0) {
                     if($fileSize <= 209272152) {
                         $fileRoot = '../users/' . $filename;
@@ -101,10 +101,11 @@
                         $GLOBALS['imageError'] = "The filesize is too big.";
                     }
                 }
+                else {
+                    $GLOBALS['imageError'] = "The extension is not allowed.";
+                }
             }
-            else {
-                $GLOBALS['imageError'] = "The extension is not allowed.";
-            }
+           
         }
     }
 ?>

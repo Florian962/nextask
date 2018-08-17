@@ -23,7 +23,7 @@
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
         //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
-        //var_dump($getFromT->uploadImage($_FILES['taskImage']));
+        var_dump($_FILES['taskImage']);
 
         if(!empty($task) AND !empty($duration)) {
             if(strlen($task) > 40) {

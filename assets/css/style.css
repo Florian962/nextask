@@ -456,13 +456,17 @@ nav {
     font-size: 0.8em;
 }
 .task__block--status {
-    grid-column: 9/10;
+    
     font-weight: 900;
     text-decoration: none;
     color:var(--green);
     cursor:pointer;
 }
-
+.taskImageDisplay {
+    width:300px;
+    padding-top: 1em;
+    border-radius: 1em;
+}
 .task__block--status:hover {
     text-decoration: underline;
 }
