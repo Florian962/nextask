@@ -16,15 +16,19 @@
             $stmt->execute();
 
             $tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
-        
+            
+
             foreach ($tasks as $task) {
+                
                 echo '
                     <div class="task__block--hover">
                         <a class="task__block--task fat-text" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->task.'</a>
                         <a class="task__block--duration" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->duration.' hours</a>
                         ';
                         if($task->deadline != 0) {
-                            echo '<a class="task__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->deadline.'</a>';
+                            echo '<a class="task__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->deadline.'</a>
+                                  
+                        ';
                         }
                 echo '
                         <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>

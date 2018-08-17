@@ -444,25 +444,31 @@ nav {
     text-decoration: underline;
 }
 .task__block--task {
-    grid-column: 1/5;
+    grid-column: 1/4;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--duration {
-    grid-column: 5/7;
+    grid-column: 4/5;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--deadline {
-    grid-column: 7/8;
+    grid-column: 5/6;
+    text-decoration: none;
+    color: var(--darkgrey);
+    font-size: 0.8em;
+}
+.task__block--time {
+    grid-column: 6/9;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--status {
-    
+    grid-column: 9/10;
     font-weight: 900;
     text-decoration: none;
     color:var(--green);

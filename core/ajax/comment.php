@@ -10,7 +10,7 @@
         $task_id = $_POST['task_id'];
 
         if(!empty($comment)){
-            $getFromU->create('comments', array('comment' => $comment, 'commentOn' => $task_id, 'commentBy' => $user_id, 'commentAt' => date('Y-m-d H:i:s') 'commentActive' => 1));
+            $getFromU->create('comments', array('comment' => $comment, 'commentOn' => $task_id, 'commentBy' => $user_id, 'commentAt' => date('Y-m-d H:i:s'), 'commentActive' => 1));
             $comments = $getFromT->comments($task_id);
             $task = $getFromT->tasks($user_id, $listBy); 
 

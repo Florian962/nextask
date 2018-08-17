@@ -20,7 +20,12 @@
         $task = ucfirst($task);
         
         $duration = $getFromU->checkInput($_POST['taskduration']);
-        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
+
+        $deadline = $getFromU->checkInput($_POST['taskdeadline']); /* DATE 1 "2018-08-25" */
+        //var_dump($deadline);
+        
+
+
         //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
         //var_dump($_FILES['file'']);
@@ -39,14 +44,14 @@
                     if(!empty($_FILES['file']['name'][0])) {
                         $fileRoot = $getFromT->uploadImage($_FILES['file']);                    
                     }
-                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $fileRoot,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
+                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
                 }
             }
             else {
                 if(!empty($_FILES['file']['name'][0])) {
                     $fileRoot = $getFromT->uploadImage($_FILES['file']);      
                 }          
-                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $fileRoot, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
+                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
             }
            
         }
