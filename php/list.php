@@ -23,7 +23,7 @@
         $deadline = $getFromU->checkInput($_POST['taskdeadline']);
         //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
-        var_dump($_FILES['taskImage']);
+        //var_dump($_FILES['file'']);
 
         if(!empty($task) AND !empty($duration)) {
             if(strlen($task) > 40) {
@@ -36,17 +36,17 @@
                 }
 
                 else {
-                    if(!empty($_FILES['taskImage']['name'][0])) {
-                        $taskImage = $getFromT->uploadImage($_FILES['taskImage']);                    
+                    if(!empty($_FILES['file']['name'][0])) {
+                        $fileRoot = $getFromT->uploadImage($_FILES['file']);                    
                     }
-                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $taskImage,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
+                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $fileRoot,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
                 }
             }
             else {
-                if(!empty($_FILES['taskImage']['name'][0])) {
-                    $taskImage = $getFromT->uploadImage($_FILES['taskImage']);      
+                if(!empty($_FILES['file']['name'][0])) {
+                    $fileRoot = $getFromT->uploadImage($_FILES['file']);      
                 }          
-                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $taskImage, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
+                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline, `taskImage` => $fileRoot, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
             }
            
         }
@@ -107,7 +107,7 @@
 
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="taskImage">If you want, you can add a file.</label>
-                    <input type="file" id="taskImage" name="taskImage" class="taskImage">
+                    <input type="file" id="taskImage" name="file" class="taskImage">
                 </div>
 
                 <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">

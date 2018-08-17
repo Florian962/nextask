@@ -75,9 +75,10 @@
                                     foreach ($comments as $comment) {
                                         echo '
                                         <div class="comments__comment">
-                                            <img src="../assets/images/profileIcon.png" alt="profileIcon">
+                                            <img src="../assets/images/profileIcon.png" class="comments__comment--profileIcon" alt="profileIcon">
                                             <p>'.$comment->comment.'</p>
-                                            <div></div>
+                                            <a href="#" class="comment__delete" data-comment="'.$comment->comment_id.'"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></img></a>
+
                                         </div>
                                         
                                         ';

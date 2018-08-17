@@ -347,6 +347,12 @@ nav {
     backface-visibility: hidden;
     perspective: 1000px;
   }
+  .comment__delete:hover{
+    animation: shake 0.62s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
   @keyframes shake {
     10%, 90% {
       transform: translate3d(-1px, 0, 0);
@@ -464,7 +470,7 @@ nav {
 }
 .taskImageDisplay {
     width:300px;
-    padding-top: 1em;
+    margin-top: 1em;
     border-radius: 1em;
 }
 .task__block--status:hover {
@@ -476,8 +482,20 @@ nav {
     color: var(--green);
     justify-self: end;
 }
+.comment__delete{
+    text-decoration: none;
+    color: var(--green);
+    justify-self: end;
+    margin-right: 1em;
+    margin-top: 10px;
+}
 .taskbin {
     margin-top: 0;
+    width:17px;
+    
+}
+.commentbin {
+    margin-top: 25px;
     width:17px;
 }
 .list__block a {
@@ -497,7 +515,7 @@ nav {
     justify-items: start;
     padding-bottom: 1em;
 }
-.comments__comment img {
+.comments__comment--profileIcon {
     margin-left: 1em;
     margin-top: 1em;
 }

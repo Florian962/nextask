@@ -40,6 +40,25 @@
                 ';
             }
         }
+
+        public function commentDelete($comment_id, $user_id) {
+            /* Eerst checken of de task bestaat */
+            /*$check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
+            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+            $check->execute();
+
+            /* geeft een int terug die gelijk moet zijn aan de user_id */
+           /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
+
+            if($userCheck == $user_id) {*/
+                $stmt = $this->pdo->prepare("UPDATE `comments` SET `commentActive` = :commentActive WHERE `comment_id` = :comment_id");
+                //var_dump($list_id);
+                $commentActive = 0;
+                $stmt->bindParam("commentActive", $commentActive, PDO::PARAM_INT);
+                $stmt->bindParam(":comment_id", $comment_id, PDO::PARAM_INT);
+                $stmt->execute();
+           /* }*/
+        }
         
 
     }

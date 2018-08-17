@@ -35,7 +35,7 @@
         }
 
         public function comments($task_id) {
-            $stmt = $this->pdo->prepare("SELECT * FROM `comments` LEFT JOIN `users` ON `commentBy` = `user_id` WHERE `commentOn` = :task_id");
+            $stmt = $this->pdo->prepare("SELECT * FROM `comments` LEFT JOIN `users` ON `commentBy` = `user_id` WHERE `commentOn` = :task_id AND `commentActive` = 1");
             $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
             $stmt->execute();
             
@@ -81,13 +81,13 @@
         }
 
         function uploadImage($file) {
-            $filename  = basename($file['name']);
-            $fileTmp   = $file['tmp_name'];
-            $fileSize  = $file['size'];
-            $fileError = $file['error'];
+            $filename    = basename($file['name']);
+            $fileTmp     = $file['tmp_name'];
+            $fileSize    = $file['size'];
+            $fileError   = $file['error'];
 
-            $ext       = explode('.', $filename);
-            $ext       = strtolower(end($ext));
+            $ext         = explode('.', $filename);
+            $ext         = strtolower(end($ext));
             $allowed_ext = array('jpg', 'jpg', 'pdf');
 
             if(in_array($ext, $allowed_ext) === true) {
