@@ -31,10 +31,15 @@
         //var_dump($_FILES['file'']);
 
         if(!empty($task) AND !empty($duration)) {
+            /* Check the length of task */
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
             }
-
+            /* Check if task is already in list */
+            else if ($getFromT->checkTask($task) === true) {
+                $taskerror = "This task is already in the list.";
+            }
+            /* Check if deadline is in future */
             else if(!empty($deadline)) {
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";

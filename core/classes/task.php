@@ -8,6 +8,21 @@
             $this->pdo = $pdo;
         }
 
+        /* Checkt of de email al in de db staat. */
+        public function checkTask ($task) {
+            $stmt = $this->pdo->prepare("SELECT `task` FROM `tasks` WHERE `task` = :task");
+            $stmt->bindParam(":task", $task, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $count = $stmt->rowCount();
+            if($count > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
         public function tasks($user_id, $listBy, $list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
