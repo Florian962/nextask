@@ -6,6 +6,7 @@
     --darkgrey:#33384D;
     --white: #ffffff;
     --light: #EFEFEF;
+    --danger: rgb(233, 13, 13);
 }
 html {
     box-sizing: border-box;
@@ -447,33 +448,39 @@ nav {
     text-decoration: underline;
 }
 .task__block--task {
-    grid-column: 1/3;
+    grid-column: 1/5;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--duration {
-    grid-column: 3/4;
+    grid-column: 5/6;
     text-decoration: none;
     color: var(--darkgrey);
-    font-size: 0.8em;
+    font-size: 0.7em;
+    margin-top: 2px;
 }
 .task__block--deadline {
-    grid-column: 4/6;
+    grid-column: 6/7;
     text-decoration: none;
     color: var(--darkgrey);
-    font-size: 0.8em;
+    font-size: 0.7em;
+    margin-top: 2px;
 }
 .task__block--time {
-    grid-column: 6/8;
+    grid-column: 7/9;
     text-decoration: none;
     color: var(--darkgrey);
-    font-size: 0.8em;
-    justify-self: z;
+    font-size: 0.7em;
+    margin-top: 2px;
+    justify-self: start;
+    font-style: italic;
 }
 .task__block--status {
     grid-column: 9/10;
     font-weight: 900;
+    font-size: 0.7em;
+    margin-top: 2px;
     text-decoration: none;
     color:var(--green);
     cursor:pointer;
@@ -501,7 +508,7 @@ nav {
 }
 .taskbin {
     margin-top: 0;
-    width:17px;
+    width:15px;
     
 }
 .commentbin {
@@ -539,4 +546,9 @@ nav {
     padding-right: 1em;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+}
+.danger{
+    color: var(--danger);
+    font-weight: bold;
+    font-style: normal;
 }
