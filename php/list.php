@@ -2,13 +2,15 @@
 
     include '../core/init.php';
     
+    /* Get user data. */
     $user_id = $_SESSION['user_id'];
-    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
 
+    /* Get list data. */
+    $listBy = $user_id;
     $list_id = $_GET['list_id'];
     $list = $getFromL->listData($list_id);
     
@@ -94,6 +96,7 @@
             
             <h2>Add tasks to your list.</h2>
             <?php
+            /* Display taskerror */
                 if(isset($taskerror)) {
                     echo '<div class="listerror"><p>'.$taskerror.'</p></div>';
                 }
