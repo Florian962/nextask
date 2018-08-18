@@ -10,36 +10,34 @@
     }
 
     $list_id = $_GET['list_id'];
-    //var_dump($list_id);
     $list = $getFromL->listData($list_id);
-    //var_dump($list);
-
+    
+    /* Check if add task btn is clicked. */
     if(isset($_POST['addtask'])) {
         $task = $getFromU->checkInput($_POST['tasktask']);
         $taskImage = '';
         $task = ucfirst($task);
-        
         $duration = $getFromU->checkInput($_POST['taskduration']);
+        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
 
-        $deadline = $getFromU->checkInput($_POST['taskdeadline']); /* DATE 1 "2018-08-25" */
+        //var_dump($list_id);
+        //var_dump($list);
         //var_dump($deadline);
-        
-
-
         //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
         //var_dump($_FILES['file'']);
 
+        /* Check if task and duration is not empty. */
         if(!empty($task) AND !empty($duration)) {
-            /* Check the length of task */
+            /* Check the length of task. */
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
             }
-            /* Check if task is already in list */
+            /* Check if task is already in list. */
             else if ($getFromT->checkTask($task) === true) {
                 $taskerror = "This task is already in the list.";
             }
-            /* Check if deadline is in future */
+            /* Check if deadline is in future. */
             else if(!empty($deadline)) {
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";
@@ -128,9 +126,12 @@
                     <h3 class="task__title"><a href="list.php?list_id=<?php echo $list->list_id ?>"><?php echo $list->listtitle ?></a></h3>
                     <a href="../index.php" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                         <div class="task__block">
+
                             <?php
+                                /* Display the tasks in the list. */
                                 $getFromT->tasks($user_id, $listBy, $list_id);
                             ?>
+
                         </div>                  
                 </article>        
           
