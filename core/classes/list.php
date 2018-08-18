@@ -7,6 +7,7 @@
             $this->pdo = $pdo;
         }
 
+        /* Function that returns lists. */
         public function lists($user_id, $listBy) {
             $stmt = $this->pdo->prepare("SELECT * FROM `lists`, `users` WHERE `listBy` = :user_id AND listActive = 1 AND `user_id` = :listBy");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
@@ -28,6 +29,7 @@
             }
         }
 
+        /* Function that returns tasks. */
          public function tasks($user_id, $listBy, $list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
@@ -54,6 +56,7 @@
             }
         }
 
+        /* Function to delete a list. */
         public function listDelete($list_id, $user_id) {
             /* Eerst checken of de list bestaat */
             $check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
@@ -71,6 +74,7 @@
             }
         }
 
+        /* Function that returns list data. */
         public function listData($list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `lists` WHERE `list_id` = :list_id");
             $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
@@ -78,7 +82,5 @@
         
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
-
-        
     }
 ?>
