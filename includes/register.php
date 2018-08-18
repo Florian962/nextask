@@ -3,8 +3,11 @@
     if(isset($_POST['register'])){
         $username = $_POST['username-new'];
         $email    = $_POST['email-new'];
+
         $password = $_POST['password-new'];
         $passwordrepeat = $_POST['password-repeat'];
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
         $registererror    = "";
         /*var_dump($username);*/
         if(empty($username) or empty($email) or empty($password)) {
@@ -34,7 +37,7 @@
                     $registererror = "The email is already in use.";
                 }
                 else {
-                    $getFromU->register($username, $email, $password);
+                    $getFromU->register($username, $email, $hash);
 
                     header("Location: ../index.php");
                 }

@@ -19,22 +19,23 @@
 
         /* LOG IN FUNCTION */
         public function login($email, $password) {
-            $password = md5($password);
-            $stmt = $this->pdo->prepare("SELECT `user_id` FROM `users` WHERE `email` = :email AND `password` = :password");
             
-            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", $password, PDO::PARAM_STR);
-            $stmt->execute();
-            
-            $user  = $stmt->fetch(PDO::FETCH_OBJ);
-            $count = $stmt->rowCount();
-
-            if($count > 0) {
-                $_SESSION['user_id'] = $user->user_id;
-                header('Location: ../index.php');
-            }
-            else {
-                return false;
+            $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = :email");
+            $stmt->bindParam(":email", $email);
+            $result = $stmt->execute();
+            $checkUser = $stmt->fetch(PDO::FETCH_ASSOC);
+            //var_dump($checkUser);
+            //var_dump($password);
+            if(!empty($checkUser)){
+                //var_dump(password_verify($password, $checkUser['password']));
+                if(password_verify($password, $checkUser['password']) ){
+                    $_SESSION['user_id'] = $checkUser['user_id'];
+                    var_dump($_SESSION['user_id']);
+                    header('Location: ../index.php');    
+                }
+                else {
+                    return false;
+                }    
             }
         }
 
@@ -76,11 +77,11 @@
         }
 
         /* REGISTER FUNCTION */
-        public function register ($username, $email, $password) {
+        public function register ($username, $email, $hash) {
             $stmt = $this->pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
             $stmt->bindParam(":username", $username, PDO::PARAM_STR);
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->bindParam(":password", md5($password), PDO::PARAM_STR);
+            $stmt->bindParam(":password", $hash, PDO::PARAM_STR);
             $stmt->execute();
 
             /* Geeft laatst ingevoerde user id. */
@@ -102,6 +103,7 @@
                 return $this->pdo->lastInsertId();
             }
         }
+        
 
         /* UPDATE FUNCTION */
         public function update($table, $user_id, $fields = array()) {
