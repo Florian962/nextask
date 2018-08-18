@@ -8,7 +8,7 @@
             $this->pdo = $pdo;
         }
 
-        /* Checkt of de email al in de db staat. */
+        /* Function that checks if task is already in db. */
         public function checkTask ($task) {
             $stmt = $this->pdo->prepare("SELECT `task` FROM `tasks` WHERE `task` = :task");
             $stmt->bindParam(":task", $task, PDO::PARAM_STR);
@@ -23,6 +23,7 @@
             }
         }
 
+        /* Function that returns tasks. */
         public function tasks($user_id, $listBy, $list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
@@ -62,6 +63,7 @@
             }
         }
 
+        /* Function that returns comments. */
         public function comments($task_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `comments` LEFT JOIN `users` ON `commentBy` = `user_id` WHERE `commentOn` = :task_id AND `commentActive` = 1");
             $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
@@ -70,44 +72,28 @@
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
+        /* Function to delete a task. */
         public function taskDelete($task_id, $user_id) {
-            /* Eerst checken of de task bestaat */
-            /*$check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
-            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-            $check->execute();
 
-            /* geeft een int terug die gelijk moet zijn aan de user_id */
-           /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
-
-            if($userCheck == $user_id) {*/
                 $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskActive` = :taskActive WHERE `task_id` = :task_id");
                 //var_dump($list_id);
                 $taskActive = 0;
                 $stmt->bindParam(":taskActive", $taskActive, PDO::PARAM_INT);
                 $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
                 $stmt->execute();
-           /* }*/
         }
 
+        /* Function to change task status. */
         public function taskStatus($task_id, $user_id) {
-            /* Eerst checken of de task bestaat */
-            /*$check = $this->pdo->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
-            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-            $check->execute();
-
-            /* geeft een int terug die gelijk moet zijn aan de user_id */
-           /* $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
-
-            if($userCheck == $user_id) {*/
                 $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskStatus` = :task_status WHERE `task_id` = :task_id");
                 //var_dump($list_id);
                 $task_status = "DONE";
                 $stmt->bindParam(":task_status", $task_status, PDO::PARAM_STR, 10);
                 $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
                 $stmt->execute();
-           /* }*/
         }
 
+        /* Function to upload an image. */
         function uploadImage($file) {
             $filename    = basename($file['name']);
             $fileTmp     = $file['tmp_name'];
