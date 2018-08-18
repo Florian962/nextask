@@ -8,6 +8,7 @@
             $this->pdo = $pdo;
         }
 
+        /* Function that checks input field. */
         public function checkInput($var) {
             $var = htmlspecialchars($var);
             $var = trim($var);
@@ -15,9 +16,7 @@
             return $var;
         }
 
-        
-
-        /* LOG IN FUNCTION */
+        /* Function to login. */
         public function login($email, $password) {
             
             $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = :email");
@@ -39,14 +38,14 @@
             }
         }
 
-        /* LOG OUT FUNCTION */
+        /* Function to logout. */
         public function logout() {
             $_SESSION = array();
             session_destroy();
             header('Location: ../../php/welcome.php');
         }
 
-        /* Checkt of de email al in de db staat. */
+        /* Function that checks if email is already in db. */
         public function checkEmail ($email) {
             $stmt = $this->pdo->prepare("SELECT `email` FROM `users` WHERE `email` = :email");
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
@@ -61,13 +60,13 @@
             }
         }
 
-        /* CHECK IF LOGGED IN FUNCTION */
+        /* Function that checks if user is logged in or not. */
         public function loggedIn () {
             /* als er een session is returnt de functie true en anders fout. */
             return (isset($_SESSION['user_id'])) ? true : false;
         }
 
-        /* USERDATA FUNCTION  */
+        /* Function that returns user data.  */
         public function userData($user_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `user_id` = :user_id");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
@@ -76,7 +75,7 @@
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
-        /* REGISTER FUNCTION */
+        /* Function to register. */
         public function register ($username, $email, $hash) {
             $stmt = $this->pdo->prepare("INSERT INTO `users` (`username`, `email`, `password`) VALUES (:username, :email, :password)");
             $stmt->bindParam(":username", $username, PDO::PARAM_STR);
@@ -89,7 +88,7 @@
             $_SESSION['user_id'] = $user_id;
         }
 
-        /* CREATE FUNCTION */
+        /* Function to create table in db. */
         public function create($table, $fields = array()) {
             $columns = implode(',', array_keys($fields));
             $values  = ':'.implode(', :', array_keys($fields));
@@ -103,9 +102,8 @@
                 return $this->pdo->lastInsertId();
             }
         }
-        
 
-        /* UPDATE FUNCTION */
+        /* Function to update table in db. */
         public function update($table, $user_id, $fields = array()) {
             $columns = '';
             $i       = 1; /* om velden te tellen*/
@@ -117,18 +115,17 @@
                 }
                 $i++;
             }
-        $sql = "UPDATE {$table} SET {$columns} WHERE `user_id` = {$user_id}";
+            $sql = "UPDATE {$table} SET {$columns} WHERE `user_id` = {$user_id}";
             if($stmt = $this->pdo->prepare($sql)) {
                 foreach ($fields as $key => $value) {
-                    $stmt->bindValue(':'.$key, $value);
-                    
+                    $stmt->bindValue(':'.$key, $value); 
                 }
                 /*var_dump($sql);*/
                 $stmt->execute();
             }
         }
 
-        /* DELETE FUNCTION */
+        /* Function to delete in db. */
         public function delete($table, $array) {
             $sql   = "DELETE FROM `{$table}`";
             $where = " WHERE ";
@@ -146,8 +143,5 @@
                 $stmt->execute();
             }
         }
-
-
-
     }
 ?>
