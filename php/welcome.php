@@ -1,11 +1,7 @@
 <?php
-    /*  */
+
     include '../core/init.php';
-
-    /* PHP Login code */
     include '../includes/login.php';
-
-    /* PHP register code */
     include '../includes/register.php';
     
 ?><!DOCTYPE html>
@@ -39,7 +35,6 @@
             <h2>Register.</h2>    
 
             <?php
-                /* Display the register error. */
                 if(isset($registererror)) {
                     echo '<div class="registererror"><p>'.$registererror.'</p></div>';
                 } 
@@ -74,7 +69,6 @@
             <h2>log in.</h2>
 
             <?php
-                /* Display the login error. */
                 if(isset($error)) {
                     echo '<div class="error"><p>'.$error.'</p></div>';
                 }
