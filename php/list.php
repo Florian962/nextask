@@ -25,7 +25,7 @@
         //var_dump($list_id);
         //var_dump($list);
         //var_dump($deadline);
-        //$taskImage    = $getFromU->checkInput($_POST['taskImage']);
+        //$taskImage = $getFromU->checkInput($_POST['taskImage']);
         //var_dump($deadline);
         //var_dump($_FILES['file'']);
 
