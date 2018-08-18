@@ -40,7 +40,7 @@
                             }      
                         }
                 echo '
-                        <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
+                        <a href="" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
                         <a href="#" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>
                     </div>
                 ';
