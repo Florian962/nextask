@@ -2,21 +2,25 @@
 
     include '../core/init.php';
     
+    /* Get the user data */
     $user_id = $_SESSION['user_id'];
-    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
 
+    /* Get the list data */
+    $listBy = $user_id;
     $list_id = $_GET['list_id'];
-    //var_dump($list_id);
     $list = $getFromL->listData($list_id);
 
+    /* Get the task data */
     $task_id = $_GET['task_id'];
-
     $comments = $getFromT->comments($task_id);
+
+    //var_dump($list_id);
     //var_dump($comments);
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

@@ -2,13 +2,15 @@
 
     include '../core/init.php';
     
+    /* Get the user data */
     $user_id = $_SESSION['user_id'];
-    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
 
+    /* Get the list data */
+    $listBy = $user_id;
     $list_id = $_GET['list_id'];
     $list = $getFromL->listData($list_id);
     
@@ -42,7 +44,6 @@
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
-
                 else {
                     if(!empty($_FILES['file']['name'][0])) {
                         $fileRoot = $getFromT->uploadImage($_FILES['file']);                    
@@ -55,8 +56,7 @@
                     $fileRoot = $getFromT->uploadImage($_FILES['file']);      
                 }          
                 $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
-            }
-           
+            }  
         }
         else {
             $taskerror = "You forgot to fill in the task or the duration. 😅";
