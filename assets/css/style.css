@@ -420,6 +420,9 @@ nav {
     color: var(--darkgrey);
     font-size: 0.8em;
 }
+.underline:hover {
+    text-decoration: underline;
+}
 .list__block--duration {
     grid-column: 5/7;
     text-decoration: none;
@@ -466,7 +469,7 @@ nav {
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
-    justify-self: center;
+    justify-self: z;
 }
 .task__block--status {
     grid-column: 9/10;
