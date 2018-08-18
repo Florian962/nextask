@@ -23,7 +23,7 @@
                 $deadline = $task->deadline;
                 $dateToday = date("Y-m-d"); 
                 /* SOURCE: https://stackoverflow.com/questions/676824/how-to-calculate-the-difference-between-two-dates-using-php */
-                $diff = abs(strtotime($deadline) - strtotime($dateToday));
+                $diff = strtotime($deadline) - strtotime($dateToday);
                 $years = floor($diff / (365*60*60*24));
                 $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                 $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
@@ -36,9 +36,13 @@
                         if($task->deadline != 0) {
                             echo '<p class="task__block--deadline">'.$task->deadline.'</p>
                             ';
-                            if($days < 20) {
-                                echo '<p class="task__block--time">'.$days.' days remaining</p>';
+                            if ($diff <0) {
+                                echo '<p class="task__block--time danger">Deadline expired!</p>';
                             }
+                            else if($days < 20) {
+                                echo '<p class="task__block--time">'.$days.' days remaining.</p>';
+                            }
+                            
                         }
                 echo '  <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
                         <a href="list.php?list_id='.$task->list_id.'" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></img></a>';
