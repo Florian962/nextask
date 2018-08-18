@@ -444,28 +444,29 @@ nav {
     text-decoration: underline;
 }
 .task__block--task {
-    grid-column: 1/4;
+    grid-column: 1/3;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--duration {
-    grid-column: 4/5;
+    grid-column: 3/4;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--deadline {
-    grid-column: 5/6;
+    grid-column: 4/6;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--time {
-    grid-column: 6/9;
+    grid-column: 6/8;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
+    justify-self: center;
 }
 .task__block--status {
     grid-column: 9/10;
@@ -475,7 +476,7 @@ nav {
     cursor:pointer;
 }
 .taskImageDisplay {
-    width:300px;
+    width:200px;
     margin-top: 1em;
     border-radius: 1em;
 }

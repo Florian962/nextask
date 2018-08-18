@@ -36,7 +36,7 @@
                             echo '<p class="task__block--deadline">'.$task->deadline.'</p>
                             ';
                             if($days < 20) {
-                                echo '<p class="task__block--time>'.$days.' days remaining</p>';
+                                echo '<p class="task__block--time">'.$days.' days remaining</p>';
                             }
                         }
                 echo '  <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
