@@ -2,20 +2,25 @@
 
     include '../core/init.php';
     
+     /* Get user data. */
     $user_id = $_SESSION['user_id'];
-    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
 
+    /* Get list data. */
+    $listBy = $user_id;
     $list_id = $_GET['list_id'];
-    //var_dump($list_id);
     $list = $getFromL->listData($list_id);
 
+    /* Get task data */
     $task_id = $_GET['task_id'];
 
+    /* Get comment data */
     $comments = $getFromT->comments($task_id);
+
+    //var_dump($list_id);
     //var_dump($comments);
 ?><!DOCTYPE html>
 <html lang="en">
@@ -47,6 +52,7 @@
             
             <h2>Add a comment to this task.</h2>
             <?php
+                /* Display comment error */
                 if(isset($commenterror)) {
                     echo '<div class="listerror"><p>'.$taskerror.'</p></div>';
                 }
@@ -67,11 +73,13 @@
                     <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                         <div class="task__block">
                             <?php
+                                /* Display the tasks */
                                 $getFromC->taskToComment($user_id, $listBy, $list_id, $task_id);
                             ?>
                             <div class="task__block--comments">
 
                                 <?php
+                                    /* Display the comments */
                                     foreach ($comments as $comment) {
                                         echo '
                                         <div class="comments__comment">
