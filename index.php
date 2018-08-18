@@ -1,34 +1,41 @@
 <?php
 
     include 'core/init.php';
-    /*var_dump($_SESSION['user_id']);*/
-    /* geef userdata voor juiste session ID */
+    
+    /* Get user data. */
     $user_id = $_SESSION['user_id'];
-    $listBy = $user_id;
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
-    //$getFromU->delete('lists', array('list_id' => '6'));
+    
+    /* Get list data. */
+    $listBy = $user_id;
 
+    /* Check if add list btn is clicked. */
     if(isset($_POST['addlist'])) {
         $listtitle = $getFromU->checkInput($_POST['listtitle']);
         $listtitle = ucfirst($listtitle).'.';
 
+        /* Check if list title is not empty. */
         if(!empty($listtitle)) {
+            /* Check length of task. */
             if(strlen($listtitle) > 50) {
                 $listerror = "Fill in a title with less than 50 characters.";
             }
             else {
                 $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
-                //header('Location: php/list.php?list_id='..'');
+                
             }
-           
         }
         else {
             $listerror = "Please fill in a title for your list.";
         }
     }
+
+    //var_dump($_SESSION['user_id']);*/
+    //$getFromU->delete('lists', array('list_id' => '6'));
+    //header('Location: php/list.php?list_id='..'');
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -60,6 +67,7 @@
             
             <h2>Add a list.</h2>
             <?php
+                /* Display list error. */
                 if(isset($listerror)) {
                     echo '<div class="listerror"><p>'.$listerror.'</p></div>';
                 }
@@ -76,6 +84,7 @@
         </section>
         <section class="lists">
                     <?php
+                        /* Display lists. */
                         $getFromL->lists($user_id, $listBy);
                     ?>      
           
