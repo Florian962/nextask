@@ -1,6 +1,6 @@
 <?php
     class User {
-        /* nu kunnen alle klassen ook aan deze conn die deze klasse extenden */
+        /* nu kunnen alle klassen ook aan deze PDO die deze klasse extenden */
         protected $pdo;
 
         /* zo kan deze klasse aan de db. */

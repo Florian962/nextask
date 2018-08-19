@@ -17,5 +17,5 @@
     $getFromC = new Comment($pdo);
     $getFromA = new Admin($pdo);
 
-    define("BASE_URL", "http://localhost/nextask/");
+    define("BASE_URL", "http://nextask.florianraeymaekers.be/");
 ?>

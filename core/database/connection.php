@@ -1,7 +1,7 @@
 <?php
-    $conn = 'mysql:host=localhost; dbname=nextask';
-    $user = 'root';
-    $pass = 'root';
+    $conn = 'mysql:host=185.182.57.42; dbname=floriob261_nextask';
+    $user = 'floriob261_florian';
+    $pass = 'xnHhJmq4';
 
     try {
         $pdo = new PDO($conn, $user, $pass);
