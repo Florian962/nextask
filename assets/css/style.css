@@ -405,7 +405,7 @@ nav {
 }
 .task__block--hover {
     display:grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(20, 1fr);
     padding: 0.5em;
     border-radius: 1em;
 }
@@ -447,28 +447,38 @@ nav {
 .list__block--status:hover {
     text-decoration: underline;
 }
+.task__block--edit {
+    grid-column: 1/2;
+    text-decoration: none;
+    color: var(--darkgrey);
+    font-size: 0.8em;
+    margin-top: 2px;
+}
+.task__block--edit img {
+    width: 15px;
+}
 .task__block--task {
-    grid-column: 1/5;
+    grid-column: 2/10;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.8em;
 }
 .task__block--duration {
-    grid-column: 5/6;
+    grid-column: 10/12;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.7em;
     margin-top: 2px;
 }
 .task__block--deadline {
-    grid-column: 6/7;
+    grid-column: 12/14;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.7em;
     margin-top: 2px;
 }
 .task__block--time {
-    grid-column: 7/9;
+    grid-column: 14/18;
     text-decoration: none;
     color: var(--darkgrey);
     font-size: 0.7em;
@@ -477,7 +487,7 @@ nav {
     font-style: italic;
 }
 .task__block--status {
-    grid-column: 9/10;
+    grid-column: 18/19;
     font-weight: 900;
     font-size: 0.7em;
     margin-top: 2px;
@@ -494,7 +504,7 @@ nav {
     text-decoration: underline;
 }
 .task__delete{
-    grid-column: 10/11;
+    grid-column: 19/20;
     text-decoration: none;
     color: var(--green);
     justify-self: end;

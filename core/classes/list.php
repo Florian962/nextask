@@ -82,5 +82,26 @@
         
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
+
+        public function updateTask($table, $task_id, $fields = array()) {
+            $columns = '';
+            $i       = 1; /* om velden te tellen*/
+
+            foreach ($fields as $name => $value) {
+                $columns .= "`{$name}` = :{$name}";
+                if($i < count($fields)) {
+                    $columns .= ', ';
+                }
+                $i++;
+            }
+            $sql = "UPDATE {$table} SET {$columns} WHERE `task_id` = {$task_id}";
+            if($stmt = $this->pdo->prepare($sql)) {
+                foreach ($fields as $key => $value) {
+                    $stmt->bindValue(':'.$key, $value); 
+                }
+                /*var_dump($sql);*/
+                $stmt->execute();
+            }
+        }
     }
 ?>

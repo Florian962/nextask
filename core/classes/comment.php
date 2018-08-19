@@ -30,6 +30,7 @@
                 
                 echo '
                     <div class="task__block--hover task__block--bottom">
+                        <a href="edittask.php?task_id='.$task->task_id.'&list_id='.$list_id.'" class="task__block--edit"><img src="'.BASE_URL.'assets/images/edit.png" alt="Edit" class="taskbin"></a>
                         <p class="task__block--task fat-text">'.$task->task.'</p>
                         <p class="task__block--duration">'.$task->duration.' hours</p>
                         ';
