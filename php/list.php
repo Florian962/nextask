@@ -86,7 +86,7 @@
         <ul class="nav">	
             <li class="nav__link"><a href="../index.php"><img class="nav__link--logo" src="../assets/images/logo.png" alt=""></a></li>
             <li class="nav__link nav__link1"><a href="../index.php">Home</a></li>
-            <li class="nav__link nav__link2"><a href="#">My profile</a></li>
+            <li class="nav__link nav__link2"><a href="profile.php">My profile</a></li>
             <li class="nav__link nav__link3"><a href="logout.php">Log out</a></li>
         </ul>
     </nav>

@@ -2,43 +2,23 @@
 
     include '../core/init.php';
     
-     /* Get user data. */
+    /* Get user data. */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
 
-    /* Get list data. */
-    $listBy = $user_id;
-    $list_id = $_GET['list_id'];
-    $list = $getFromL->listData($list_id);
-
-    /* Get task data */
-    $task_id = $_GET['task_id'];
-
-    //var_dump($task_id);
-    //var_dump($list_id);
-    //var_dump($comments);
-
-    if(isset($_POST['addtask'])) {
-        $task = $getFromU->checkInput($_POST['tasktask']);
+    /* Check if edit profile btn is clicked. */
+    if(isset($_POST['editprofile'])) {
+        $task = $getFromU->checkInput($_POST['']);
         $taskImage = '';
         $task = ucfirst($task);
-        $duration = $getFromU->checkInput($_POST['taskduration']);
-        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
-
-        //var_dump($list_id);
-
-        //var_dump($list);
-        //var_dump($deadline);
-        //$taskImage = $getFromU->checkInput($_POST['taskImage']);
-        //var_dump($deadline);
-        //var_dump($_FILES['file'']);
+        $duration = $getFromU->checkInput($_POST['']);
+        $deadline = $getFromU->checkInput($_POST['']);
 
         /* Check if task and duration is not empty. */
         if(!empty($task) AND !empty($duration)) {
-
             /* Check the length of task. */
             if(strlen($task) > 40) {
                 $taskerror = "The task is too long.";
@@ -57,15 +37,14 @@
                     if(!empty($_FILES['file']['name'][0])) {
                         $fileRoot = $getFromT->uploadImage($_FILES['file']);                    
                     }
-                    $getFromL->updateTask('tasks', $task_id, array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/));
+                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
                 }
             }
             else {
-
                 if(!empty($_FILES['file']['name'][0])) {
                     $fileRoot = $getFromT->uploadImage($_FILES['file']);      
-                }        
-                $getFromL->updateTask('tasks', $task_id, array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/));
+                }          
+                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
             }
            
         }
@@ -74,6 +53,7 @@
         }
 
     }
+    
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +67,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
 
-    <title>NEXTASK | Task</title>
+    <title>NEXTASK | Profile</title>
 </head>
 <body>
     <nav>
@@ -102,21 +82,21 @@
         <section class="addlist">
 
             
-            <h2>Edit the task.</h2>
+            <h2>Change your profile.</h2>
             <?php
-                /* Display comment error */
-                if(isset($taskerror)) {
-                    echo '<div class="listerror"><p>'.$taskerror.'</p></div>';
+            /* Display profileerror */
+                if(isset($profileerror)) {
+                    echo '<div class="listerror"><p>'.$profileerror.'</p></div>';
                 }
             ?>
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, change the task of the list. *</label>
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list. *</label>
                     <input type="text" id="listtitle" name="tasktask">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Change the duration. *</label>
+                    <label for="listtitle">Fill in the duration of the task (in hours). *</label>
                     <input class="input__duration" type="number" min="1" max="100" id="listtitle" name="taskduration">
                 </div>
                 <div class="addlist__form--fields addlist__form--listtitle">
@@ -125,32 +105,23 @@
                 </div>
 
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="taskImage">Do you want another file?</label>
+                    <label for="taskImage">If you want, you can add a file.</label>
                     <input type="file" id="taskImage" name="file" class="taskImage">
                 </div>
 
                 <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">
             </form>
         </section>
-        <section class="lists">
-                <article class="list">
-                    <h3 class="task__title"><a href="list.php?list_id=<?php echo $list->list_id ?>"><?php echo $list->listtitle ?></a></h3>
-                    <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
-                        <div class="task__block">
-                            <?php
-                                /* Display the tasks */
-                                $getFromC->taskToComment($user_id, $listBy, $list_id, $task_id);
-                            ?>
-                        </div>            
-                </article>        
-          
+        <section class="profile">
+                          
         </section>
     <main>
     <footer>
 
     </footer>
-    <script src="../assets/js/comment.js"></script>
-    <script src="../assets/js/delete.js"></script>
-    <script src="../assets/js/status.js"></script>
+    <script src="../assets/js/delete.js" ></script>
+    <script src="../assets/js/status.js" ></script>
+    <script src="../assets/js/mindate.js"></script>
+    <script src="../assets/js/edit.js"   ></script>
 </body>
 </html>
