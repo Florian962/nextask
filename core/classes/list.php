@@ -9,6 +9,8 @@
 
         /* Function that returns lists. */
         public function lists($user_id, $listBy) {
+
+            /*LIJSTEN*/
             $stmt = $this->pdo->prepare("SELECT * FROM `lists`, `users` WHERE `listBy` = :user_id AND listActive = 1 AND `user_id` = :listBy");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
             $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
@@ -20,10 +22,7 @@
                 echo '
                 <article class="list">
                     <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
-                    <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>
-                        <div class="list__block">
-                                
-                        </div>                 
+                    <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>           
                 </article>    
                 ';
             }
