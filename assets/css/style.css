@@ -562,3 +562,8 @@ nav {
     font-weight: bold;
     font-style: normal;
 }
+.profile {
+    background:white;
+    display: grid;
+    grid-template-columns: 12;
+}
