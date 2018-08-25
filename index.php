@@ -25,7 +25,7 @@
             }
             else {
                 $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
-                
+                //????header('Location: php/list.php?list_id='$list_id'');
             }
         }
         else {
