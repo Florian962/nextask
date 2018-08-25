@@ -1,82 +1,31 @@
 <?php
+    class Todolist extends User { /*met extends krijgen de lijsten info uit de User class*/
+        /* protected pdo kan weg omdat dit al in user class staat */
+        /*protected $pdo;*/
 
-    require_once 'ValueObjects/List.php';
-
-
-    class listService {
-
-        protected $db;
-
-        function __construct(){
-            $this->db = Database::getInstance();
-        }
-
-        public function createList($fields = array()) {
-            $columns = implode(',', array_keys($fields));
-            $values  = ':'.implode(', :', array_keys($fields));
-            $sql     = "INSERT INTO `lists` ({$columns}) VALUES ({$values})";
-            /*var_dump($sql);*/
-            if($stmt = $this->db->getPDO()->prepare($sql)){
-                foreach ($fields as $key => $data) {
-                    $stmt->bindValue(':'.$key, $data);
-                }  
-                $stmt->execute();
-                return $this->db->getPDO()->lastInsertId();
-            }
+        function __construct($pdo){
+            $this->pdo = $pdo;
         }
 
         /* Function that returns lists. */
-        public function getLists($user_id) {
+        public function lists($user_id, $listBy) {
+
             /*LIJSTEN*/
-            $stmt = $this->db->getPDO()->prepare("SELECT * FROM `lists` AS l LEFT JOIN `tasks` AS t ON t.taskIn = l.list_id WHERE l.listBy = :user_id AND listActive = 1");
+            $stmt = $this->pdo->prepare("SELECT * FROM `lists`, `users` WHERE `listBy` = :user_id AND listActive = 1 AND `user_id` = :listBy");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
+            $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
             $stmt->execute();
 
-            $lists = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            $todoLists = array();
+            $lists = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-            foreach($lists as $key => $list) {
-                if ($key === 0) {
-                    $todoLists[] = array(
-                        'list_id' => $list['list_id'],
-                        'listtitle' => $list['listtitle'],
-                        'listBy' => $list['listBy'],
-                        'listPostedOn' => $list['listPostedOn'],
-                        'listActive' => $list['listActive'],
-                        'tasks' => array();
-                    );
-                }
-                if (isset($lists[$key+1]) &&
-                    $list['list_id'] !== $lists[$key+1]['list_id']) {
-                    $todoLists[] = array(
-                        'list_id' => $lists[$key+1]['list_id'],
-                        'listtitle' => $lists[$key+1]['listtitle'],
-                        'listBy' => $lists[$key+1]['listBy'],
-                        'listPostedOn' => $lists[$key+1]['listPostedOn'],
-                        'listActive' => $lists[$key+1]['listActive'],
-                        'tasks' => array();
-                    );
-                }
-    
-                if ($list['task_id'] !== null) {
-                    $task = new Task();
-                    $task->fetchTaskFromDb($list);
-                    foreach($todoLists as $index => $todoList) {
-                        if ($task->getTaskIn() === $todoList['list_id']) {
-                            $todoLists[$index]['tasks'][] = $task;
-                        }
-                    }
-                }
+            foreach($lists as $list) {
+                echo '
+                <article class="list">
+                    <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
+                    <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>           
+                </article>    
+                ';
             }
-    
-            $tls = array();
-            foreach ($todoLists as $todoList) {
-                $tl = new TodoList();
-                $tl->fetchListFromDb($todoList);
-                $tls[] = $tl;
-            }
-    
-            return $tls;
         }
 
         /* Function that returns tasks. */

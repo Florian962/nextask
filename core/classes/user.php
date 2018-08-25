@@ -7,9 +7,60 @@
         function __construct($pdo){
             $this->pdo = $pdo;
         }
-               
-        
 
+        /* Function that checks input field. */
+        public function checkInput($var) {
+            $var = htmlspecialchars($var);
+            $var = trim($var);
+            $var = stripcslashes($var);
+            return $var;
+        }
+
+        /* Function to login. */
+        public function login($email, $password) {
+            
+            $stmt = $this->pdo->prepare("SELECT * FROM `users` WHERE `email` = :email");
+            $stmt->bindParam(":email", $email);
+            $result = $stmt->execute();
+            $checkUser = $stmt->fetch(PDO::FETCH_ASSOC);
+            //var_dump($checkUser);
+            //var_dump($password);
+            if(!empty($checkUser)){
+                //var_dump(password_verify($password, $checkUser['password']));
+                if(password_verify($password, $checkUser['password']) ){
+                    $_SESSION['user_id'] = $checkUser['user_id'];
+                    var_dump($_SESSION['user_id']);
+                    header('Location: ../index.php');    
+                }
+                else {
+                    return false;
+                }    
+            }
+        }
+
+        /* Function to logout. */
+        public function logout() {
+            $_SESSION = array();
+            session_destroy();
+            header('Location: ../../php/welcome.php');
+        }
+
+        /* Function that checks if email is already in db. */
+        public function checkEmail ($email) {
+            $stmt = $this->pdo->prepare("SELECT `email` FROM `users` WHERE `email` = :email");
+            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $count = $stmt->rowCount();
+            if($count > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        /* Function that checks if user is logged in or not. */
         public function loggedIn () {
             /* als er een session is returnt de functie true en anders fout. */
             return (isset($_SESSION['user_id'])) ? true : false;

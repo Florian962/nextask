@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../core/init.php';
+    include '../core/init.php';
 
     /* PHP code for login & register form. */
     include '../includes/login.php';

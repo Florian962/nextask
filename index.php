@@ -1,17 +1,20 @@
 <?php
 
-    include_once 'core/init.php';
-    require_once 'core/classes/ListService.php';
-    require_once 'core/classes/ValueObjects/List.php';
-
-    $ls = new listService();
+    include 'core/init.php';
     
-    /* Get all the TodoLists for the logged in user. */
-    $lists = $ls->getLists($user->getUserId());
+    /* Get user data. */
+    $user_id = $_SESSION['user_id'];
+    $user = $getFromU->userData($user_id);
+    if($getFromU->loggedIn() === false)  {
+        header('Location: php/welcome.php');
+    }
+    
+    /* Get list data. */
+    $listBy = $user_id;
 
     /* Check if add list btn is clicked. */
     if(isset($_POST['addlist'])) {
-        $listtitle = checkInput($_POST['listtitle']);
+        $listtitle = $getFromU->checkInput($_POST['listtitle']);
         $listtitle = ucfirst($listtitle).'.';
 
         /* Check if list title is not empty. */
@@ -21,19 +24,18 @@
                 $listerror = "Fill in a title with less than 50 characters.";
             }
             else {
-<<<<<<< HEAD
-                $ls->createList(array('listtitle' => $listtitle, 'listBy' => $user->getUserId(), 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
-                //????header('Location: php/list.php?list_id='$list_id'');
-=======
                 $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
                 
->>>>>>> parent of dea531c... Add db class properties
             }
         }
         else {
             $listerror = "Please fill in a title for your list.";
         }
     }
+
+    //var_dump($_SESSION['user_id']);*/
+    //$getFromU->delete('lists', array('list_id' => '6'));
+    //header('Location: php/list.php?list_id='..'');
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -73,7 +75,7 @@
 
             <form autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
-                    <label for="listtitle">Hi <span class="fat-text"><?=$user->getUsername() ?></span>, type a title for your new list.</label>
+                    <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a title for your new list.</label>
                     <input type="text" id="listtitle" name="listtitle">
                 </div>
 
@@ -81,12 +83,11 @@
             </form>
         </section>
         <section class="lists">
-            <?php foreach ($lists as $list): ?>
-                    <article class="list">
-                        <a href="/php/list.php?list_id=<?php echo $list->getTodoListId(); ?>" class="list__title"><h3><?= $list->getTodoListName(); ?></h3></a>
-                        <a href="#" class="list__delete" data-list="<?php echo $list->getTodoListId(); ?>"><img src="/assets/images/bin.png" alt="bin" class="bin"></a>
-                    </article>
-                <?php endforeach; ?>
+                    <?php
+                        /* Display lists. */
+                        $getFromL->lists($user_id, $listBy);
+                    ?>      
+          
         </section>
     <main>
     <footer>

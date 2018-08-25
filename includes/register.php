@@ -1,9 +1,6 @@
 <?php
-    require_once '../core/classes/userService.php';
 
     if(isset($_POST['register'])){
-        $us = new UserService();
-
         $username = $_POST['username-new'];
         $email    = $_POST['email-new'];
 
@@ -17,11 +14,11 @@
             $registererror = "All fields are required.";
         }
         else {
-            $username = checkInput($username);
+            $username = $getFromU->checkInput($username);
             $username = ucfirst($username);
-            $email    = checkInput($email);
-            $password = checkInput($password);
-            $passwordrepeat = checkInput($passwordrepeat);
+            $email    = $getFromU->checkInput($email);
+            $password = $getFromU->checkInput($password);
+            $passwordrepeat = $getFromU->checkInput($passwordrepeat);
 
             if(!filter_var($email)){
                 $registererror = "Invalid email format.";
@@ -36,13 +33,13 @@
                 $registererror = "The passwords are not identical.";
             }
             else {
-                if($us->checkEmail($email) === true){
+                if($getFromU->checkEmail($email) === true){
                     $registererror = "The email is already in use.";
                 }
                 else {
-                    $us->register($username, $email, $password, $hash);
-                    var_dump("haha");
-                    //header("Location: ../index.php");
+                    $getFromU->register($username, $email, $hash);
+
+                    header("Location: ../index.php");
                 }
             } 
         }
