@@ -21,8 +21,13 @@
                 $listerror = "Fill in a title with less than 50 characters.";
             }
             else {
+<<<<<<< HEAD
                 $ls->createList(array('listtitle' => $listtitle, 'listBy' => $user->getUserId(), 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
                 //????header('Location: php/list.php?list_id='$list_id'');
+=======
+                $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
+                
+>>>>>>> parent of dea531c... Add db class properties
             }
         }
         else {
