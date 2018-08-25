@@ -10,14 +10,14 @@ class Database {
 
     private function __construct() {
         try {
-            $this->pdo = new PDO('mysql:host='.$this->host.'; dbname='.$this->database.'', $this->user, $this->password);
-
+            $this->pdo = new PDO('mysql:host=' . $this->host . '; dbname=' . $this->database, 
+                $this->user, $this->password);
         }
         catch(PDOException $e) {
             echo 'Connection error!' . $e->getMessage();
         }
     }
-
+    
     public static function getInstance() {
         if(!isset(self::$instance)) {
             self::$instance = new Database();
@@ -26,8 +26,8 @@ class Database {
     }
 
     public function getPDO() {
+
         return $this->pdo;
+        
     }
 }
-
-?>

@@ -8,20 +8,7 @@
             $this->pdo = $pdo;
         }
                
-        /* Function that checks if email is already in db. */
-        function checkEmail ($email) {
-            $stmt = $this->pdo->prepare("SELECT `email` FROM `users` WHERE `email` = :email");
-            $stmt->bindParam(":email", $email, PDO::PARAM_STR);
-            $stmt->execute();
-
-            $count = $stmt->rowCount();
-            if($count > 0) {
-                return true;
-            }
-            else {
-                return false;
-            }
-        }
+        
 
         public function loggedIn () {
             /* als er een session is returnt de functie true en anders fout. */

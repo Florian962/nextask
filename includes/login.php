@@ -1,4 +1,5 @@
 <?php
+    //$as = new AuthenticationService();
 
     if(isset($_POST['login']) && !empty($_POST['login'])){
         $email    = $_POST['email'];
@@ -6,14 +7,15 @@
 
         /*var_dump($password);*/
         if(!empty($email) or !empty($password)) {
-            $email    = $getFromU->checkInput($email);
-            $password = $getFromU->checkInput($password);
-
+            $email    = checkInput($email);
+            $password = checkInput($password);
+            
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $error = "Invalid email format.";
             }
             else {
-                if($getFromU->login($email, $password) === false){
+                
+                if($as->login($email, $password) === false){
                     $error = "The email or password is incorrect.";
                 }
             }

@@ -2,8 +2,8 @@
 
     include '../core/init.php';
 
-    $getFromU->logout(); 
-    if($getFromU->loggedIn() === false)  {
+    $as->logout(); 
+    if($as->loggedIn() === false)  {
         header('Location: welcome.php');
     }
 ?>
