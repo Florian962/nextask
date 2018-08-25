@@ -25,8 +25,6 @@ class User {
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
-
-        return $this;
     }
 
     /**
@@ -45,8 +43,6 @@ class User {
     public function setUsername($username)
     {
         $this->username = $username;
-
-        return $this;
     }
 
     /**
@@ -65,8 +61,6 @@ class User {
     public function setEmail($email)
     {
         $this->email = $email;
-
-        return $this;
     }
 
     /**
@@ -85,8 +79,6 @@ class User {
     public function setPassword($password)
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /* zet logged in op waar */

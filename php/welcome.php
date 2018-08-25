@@ -1,11 +1,5 @@
 <?php
 
-    include '../core/init.php';
-
-    /* PHP code for login & register form. */
-    include '../includes/login.php';
-    include '../includes/register.php';
-    
 ?><!DOCTYPE html>
 <html lang="en">
 <head>

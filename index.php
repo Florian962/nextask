@@ -3,12 +3,12 @@
     include 'core/init.php';
     
     /* Get user data. */
-    $user_id = $_SESSION['user_id'];
+    /*$user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
     if($getFromU->loggedIn() === false)  {
         header('Location: php/welcome.php');
     }
-    
+    */
     /* Get list data. */
     $listBy = $user_id;
 

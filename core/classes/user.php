@@ -60,7 +60,7 @@
             }
         }
 
-        /* Function that checks if user is logged in or not. */
+       
         public function loggedIn () {
             /* als er een session is returnt de functie true en anders fout. */
             return (isset($_SESSION['user_id'])) ? true : false;
