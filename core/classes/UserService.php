@@ -3,11 +3,11 @@
 
     class UserService {
 
-        protected $db;
-    
-        public function __construct() {
-            $this->db = Database::getInstance();
-        }
+    protected $db;
+
+    public function __construct() {
+        $this->db = Database::getInstance();
+    }
 
         /* Function that checks if email is already in db. */
         function checkEmail ($email) {
