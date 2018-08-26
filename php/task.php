@@ -28,7 +28,7 @@
 
     /* Get comment data */
     $comments = $comment->getComments($task_id);
-    
+
     //var_dump($list_id);
     //var_dump($comments);
 ?><!DOCTYPE html>
@@ -112,7 +112,13 @@
                                     <a href="list.php?list_id=<?= $task->list_id ?>" class="task__delete" data-task="<?= $task->task_id ?>"><img src="<?= BASE_URL ?>assets/images/bin.png" alt="bin" class="taskbin"></a>
                                 </div>
                                     <?php if(!empty($task->taskImage)): ?>
-                                        <img class="taskImageDisplay" src="<?= $task->taskImage ?>" alt="">
+                                        <?php 
+                                            $task->taskImage = substr($task->taskImage ,29); 
+                                            
+                                        ?>
+
+                                        <img class="taskImageDisplay" src="<?= BASE_URL . 'users/' . $task->taskImage ?>" alt="">
+                                        
                                     <?php endif; ?>
                                   
                             <?php endforeach; ?>
