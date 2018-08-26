@@ -1,20 +1,23 @@
 <?php
 
     include 'core/init.php';
+    include 'core/classes/List.php';
+    include 'core/classes/User.php';
+
+    $getFromU = new User();
+    $list = new TodoList();
     
     /* Get user data. */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
-    if($getFromU->loggedIn() === false)  {
-        header('Location: php/welcome.php');
-    }
+
     
     /* Get list data. */
     $listBy = $user_id;
 
     /* Check if add list btn is clicked. */
     if(isset($_POST['addlist'])) {
-        $listtitle = $getFromU->checkInput($_POST['listtitle']);
+        $listtitle = checkInput($_POST['listtitle']);
         $listtitle = ucfirst($listtitle).'.';
 
         /* Check if list title is not empty. */
@@ -24,7 +27,7 @@
                 $listerror = "Fill in a title with less than 50 characters.";
             }
             else {
-                $getFromU->create('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
+                $list->createList('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
                 
             }
         }
@@ -85,7 +88,7 @@
         <section class="lists">
                     <?php
                         /* Display lists. */
-                        $getFromL->lists($user_id, $listBy);
+                        $list->lists($user_id, $listBy);
                     ?>      
           
         </section>
