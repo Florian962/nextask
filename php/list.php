@@ -21,6 +21,7 @@
         $taskTitle  = checkInput($_POST['tasktask']);
         $taskTitle  = ucfirst($taskTitle);
         $taskImage = $_FILES['taskImage'];
+        $fileRoot = '';
         $duration  = checkInput($_POST['taskduration']);
         $deadline  = checkInput($_POST['taskdeadline']);
 
@@ -29,7 +30,7 @@
         $task = new Task();
 
         /* Check if task and duration is not empty. */
-        if(!empty($tasTitle) AND !empty($duration)) {
+        if(!empty($taskTitle) AND !empty($duration)) {
             /* Check the length of task. */
             if(strlen($taskTitle) > 40) {
                 $taskerror = "The task is too long.";
@@ -44,12 +45,12 @@
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
             }
-            //else if(!empty($taskImage)) {
+            else if(!empty($taskImage)) {
                 $fileRoot = uploadImage($taskImage);
                 if ($fileRoot instanceof Exception) {
                     $taskerror = $fileRoot->getMessage();
                 }
-            //}                   
+            }                 
 
         }
         else {
@@ -57,7 +58,7 @@
         }
          /* Wanneer geen errors, dan pas toevoegen taak in DB. */
          if($taskerror === '') {
-            $task->createTask('lists', array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
+            $task->createTask('tasks', array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
         }
 
     }
@@ -98,7 +99,7 @@
                 }
             ?>
 
-            <form autocomplete="off" method="post" class="addlist__form">
+            <form enctype="multipart/form-data" autocomplete="off" method="post" class="addlist__form">
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="listtitle">Hi <span class="fat-text"><?=$user->username ?></span>, type a task for your new list. *</label>
                     <input type="text" id="listtitle" name="tasktask">
@@ -114,7 +115,7 @@
 
                 <div class="addlist__form--fields addlist__form--listtitle">
                     <label for="taskImage">If you want, you can add a file.</label>
-                    <input type="file" id="taskImage" name="file" class="taskImage">
+                    <input type="file" id="taskImage" name="taskImage" class="taskImage">
                 </div>
 
                 <input class="addlist__form--submit" name="addtask" type="submit" value="Add task">

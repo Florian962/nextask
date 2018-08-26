@@ -1,7 +1,11 @@
 <?php
 
     include '../core/init.php';
-    
+    require_once '../core/classes/User.php';
+    require_once '../core/classes/List.php';
+    require_once '../core/classes/Task.php';
+    require_once '../core/classes/Comment.php';
+
      /* Get user data. */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);

@@ -119,6 +119,17 @@
                 $stmt->execute();
         }
 
+        /* Function to change task status. */
+        public function changeTaskStatus($task_id, $user_id) {
+            $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskStatus` = :task_status WHERE `task_id` = :task_id");
+            //var_dump($list_id);
+            $task_status = "DONE";
+            $stmt->bindParam(":task_status", $task_status, PDO::PARAM_STR, 10);
+            $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
+            $stmt->execute();
+        }
+
+
 
 
                 
@@ -152,9 +163,7 @@
                     </div>
                 ';
             }
-        }
-
-        
+        }        
 
         /* Function that returns list data. */
         public function listData($list_id) {

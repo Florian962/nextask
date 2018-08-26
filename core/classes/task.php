@@ -11,7 +11,7 @@
 
         /* Function that checks if task is already in db. */
         public function checkTask ($task) {
-            $stmt = $this->pdo->prepare("SELECT `task` FROM `tasks` WHERE `task` = :task");
+            $stmt = $this->db->getPDO()->prepare("SELECT `task` FROM `tasks` WHERE `task` = :task");
             $stmt->bindParam(":task", $task, PDO::PARAM_STR);
             $stmt->execute();
 
@@ -38,6 +38,19 @@
                 return $this->db->getPDO()->lastInsertId();
             }
         }
+
+        
+
+
+
+
+
+
+
+
+
+
+
 
         /* Function that returns tasks. */
         public function getTasks($user_id, $listBy, $list_id) {
@@ -101,45 +114,6 @@
             $stmt->execute();
             
             return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }
-        
-        /* Function to change task status. */
-        public function taskStatus($task_id, $user_id) {
-                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskStatus` = :task_status WHERE `task_id` = :task_id");
-                //var_dump($list_id);
-                $task_status = "DONE";
-                $stmt->bindParam(":task_status", $task_status, PDO::PARAM_STR, 10);
-                $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
-                $stmt->execute();
-        }
-
-        /* Function to upload an image. */
-        function uploadImage($file) {
-            $filename    = basename($file['name']);
-            $fileTmp     = $file['tmp_name'];
-            $fileSize    = $file['size'];
-            $fileError   = $file['error'];
-
-            $ext         = explode('.', $filename);
-            $ext         = strtolower(end($ext));
-            $allowed_ext = array('jpg', 'jpg', 'pdf');
-
-            if(in_array($ext, $allowed_ext) === true) {
-                if($fileError === 0) {
-                    if($fileSize <= 209272152) {
-                        $fileRoot = '../users/' . $filename;
-                        move_uploaded_file($fileTmp, $fileRoot);
-                        return $fileRoot;
-                    }
-                    else {
-                        $GLOBALS['imageError'] = "The filesize is too big.";
-                    }
-                }
-                else {
-                    $GLOBALS['imageError'] = "The extension is not allowed.";
-                }
-            }
-           
         }
     }
 ?>
