@@ -25,16 +25,8 @@
             }
         }       
 
-
-
-
-
-
-
-                
-
         /* Function that returns lists. */
-        public function lists($user_id, $listBy) {
+        public function getLists($user_id, $listBy) {
 
             /*LIJSTEN*/
             $stmt = $this->db->getPDO()->prepare("SELECT * FROM `lists`, `users` WHERE `listBy` = :user_id AND listActive = 1 AND `user_id` = :listBy");
@@ -53,6 +45,32 @@
                 ';
             }
         }
+
+        /* Function to delete a list. */
+        public function deleteList($list_id, $user_id) {
+            /* Eerst checken of de list bestaat */
+            $check = $this->db->getPDO()->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
+            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+            $check->execute();
+
+            /* geeft een int terug die gelijk moet zijn aan de user_id */
+            $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
+
+            if($userCheck == $user_id) {
+                $stmt = $this->db->getPDO()->prepare("UPDATE `lists` SET `listActive` = 0 WHERE `list_id` = :list_id");
+                //var_dump($list_id);
+                $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
+                $stmt->execute();
+            }
+        }
+
+
+
+
+
+                
+
+        
 
         /* Function that returns tasks. */
          public function tasks($user_id, $listBy, $list_id) {
@@ -81,23 +99,7 @@
             }
         }
 
-        /* Function to delete a list. */
-        public function listDelete($list_id, $user_id) {
-            /* Eerst checken of de list bestaat */
-            $check = $this->db->getPDO()->prepare("SELECT `listBy` FROM `lists` WHERE `list_id` = :list_id");
-            $check->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-            $check->execute();
-
-            /* geeft een int terug die gelijk moet zijn aan de user_id */
-            $userCheck = $check->fetch(PDO::FETCH_ASSOC)['listBy'];
-
-            if($userCheck == $user_id) {
-                $stmt = $this->pdo->prepare("UPDATE `lists` SET `listActive` = 0 WHERE `list_id` = :list_id");
-                //var_dump($list_id);
-                $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-                $stmt->execute();
-            }
-        }
+        
 
         /* Function that returns list data. */
         public function listData($list_id) {
