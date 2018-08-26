@@ -73,7 +73,6 @@
             $stmt->execute();
 
             $tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
-            
 
             foreach ($tasks as $task) {
                 $deadline = $task->deadline;
@@ -127,6 +126,16 @@
             $stmt->bindParam(":task_status", $task_status, PDO::PARAM_STR, 10);
             $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
             $stmt->execute();
+        }
+
+        /* Function to delete a comment. */
+        public function deleteComment($comment_id, $user_id) {
+                $stmt = $this->db->getPDO()->prepare("UPDATE `comments` SET `commentActive` = :commentActive WHERE `comment_id` = :comment_id");
+                //var_dump($list_id);
+                $commentActive = 0;
+                $stmt->bindParam("commentActive", $commentActive, PDO::PARAM_INT);
+                $stmt->bindParam(":comment_id", $comment_id, PDO::PARAM_INT);
+                $stmt->execute();
         }
 
 

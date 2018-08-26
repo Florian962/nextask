@@ -81,15 +81,5 @@
                 ';
             }
         }
-
-        /* Function to delete a comment. */
-        public function commentDelete($comment_id, $user_id) {
-                $stmt = $this->pdo->prepare("UPDATE `comments` SET `commentActive` = :commentActive WHERE `comment_id` = :comment_id");
-                //var_dump($list_id);
-                $commentActive = 0;
-                $stmt->bindParam("commentActive", $commentActive, PDO::PARAM_INT);
-                $stmt->bindParam(":comment_id", $comment_id, PDO::PARAM_INT);
-                $stmt->execute();
-        }
     }
 ?>

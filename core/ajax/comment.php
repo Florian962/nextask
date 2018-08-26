@@ -2,7 +2,6 @@
     include '../init.php';
     require_once '../classes/Comment.php';
 
-
     $comment = new Comment();
 
     if(isset($_POST['comment']) && !empty($_POST['comment'])){
