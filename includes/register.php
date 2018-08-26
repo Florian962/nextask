@@ -17,11 +17,11 @@
             $registererror = "All fields are required.";
         }
         else {
-            $username = $getFromU->checkInput($username);
+            $username = checkInput($username);
             $username = ucfirst($username);
-            $email    = $getFromU->checkInput($email);
-            $password = $getFromU->checkInput($password);
-            $passwordrepeat = $getFromU->checkInput($passwordrepeat);
+            $email    = checkInput($email);
+            $password = checkInput($password);
+            $passwordrepeat = checkInput($passwordrepeat);
 
             if(!filter_var($email)){
                 $registererror = "Invalid email format.";
