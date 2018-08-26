@@ -6,23 +6,26 @@
     require_once '../core/classes/Task.php';
     require_once '../core/classes/Comment.php';
 
+    $getFromU = new User();
+    $todolist = new Todolist();
+    $task     = new Task();
+    $comment  = new Comment();
+
      /* Get user data. */
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
-    if($getFromU->loggedIn() === false)  {
-        header('Location: php/welcome.php');
-    }
+
 
     /* Get list data. */
     $listBy = $user_id;
     $list_id = $_GET['list_id'];
-    $list = $getFromL->listData($list_id);
+    $list = $todolist->listData($list_id);
 
     /* Get task data */
     $task_id = $_GET['task_id'];
 
     /* Get comment data */
-    $comments = $getFromT->comments($task_id);
+    $comments = $comment->getComments($task_id);
 
     //var_dump($list_id);
     //var_dump($comments);
@@ -78,7 +81,7 @@
                         <div class="task__block">
                             <?php
                                 /* Display the tasks */
-                                $getFromC->taskToComment($user_id, $listBy, $list_id, $task_id);
+                                $comment->taskToComment($user_id, $listBy, $list_id, $task_id);
                             ?>
                             <div class="task__block--comments">
 
