@@ -1,11 +1,12 @@
 <?php
-     //met extends krijgen de taken info uit de user list
-    class Task extends User {
-       
-        /*protected $pdo;*/
 
-        function __construct($pdo){
-            $this->pdo = $pdo;
+    class Task {
+       
+        protected $db;
+
+        /* zo kan deze klasse aan de db. */
+        public function __construct() {
+            $this->db = Database::getInstance();
         }
 
         /* Function that checks if task is already in db. */
@@ -23,8 +24,23 @@
             }
         }
 
+         /* Function to create table in db. */
+         public function createTask($table, $fields = array()) {
+            $columns = implode(',', array_keys($fields));
+            $values  = ':'.implode(', :', array_keys($fields));
+            $sql     = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
+            /*var_dump($sql);*/
+            if($stmt = $this->db->getPDO()->prepare($sql)){
+                foreach ($fields as $key => $data) {
+                    $stmt->bindValue(':'.$key, $data);
+                }  
+                $stmt->execute();
+                return $this->db->getPDO()->lastInsertId();
+            }
+        }
+
         /* Function that returns tasks. */
-        public function tasks($user_id, $listBy, $list_id) {
+        public function getTasks($user_id, $listBy, $list_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
             $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
             $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
@@ -67,6 +83,17 @@
             }
         }
 
+
+
+
+
+
+
+
+
+
+        
+
         /* Function that returns comments. */
         public function comments($task_id) {
             $stmt = $this->pdo->prepare("SELECT * FROM `comments` LEFT JOIN `users` ON `commentBy` = `user_id` WHERE `commentOn` = :task_id AND `commentActive` = 1");
@@ -75,18 +102,7 @@
             
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
-
-        /* Function to delete a task. */
-        public function taskDelete($task_id, $user_id) {
-
-                $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskActive` = :taskActive WHERE `task_id` = :task_id");
-                //var_dump($list_id);
-                $taskActive = 0;
-                $stmt->bindParam(":taskActive", $taskActive, PDO::PARAM_INT);
-                $stmt->bindParam(":task_id", $task_id, PDO::PARAM_INT);
-                $stmt->execute();
-        }
-
+        
         /* Function to change task status. */
         public function taskStatus($task_id, $user_id) {
                 $stmt = $this->pdo->prepare("UPDATE `tasks` SET `taskStatus` = :task_status WHERE `task_id` = :task_id");

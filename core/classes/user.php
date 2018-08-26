@@ -9,9 +9,7 @@
         public function __construct() {
             $this->db = Database::getInstance();
         }
-
-
-
+        
         /* Function that checks if email is already in db. */
         public function checkEmail ($email) {
             $stmt = $this->db->getPDO()->prepare("SELECT `email` FROM `users` WHERE `email` = :email");

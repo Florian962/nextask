@@ -1,42 +1,41 @@
 <?php
 
-    include '../core/init.php';
+    require_once '../core/init.php';
+    require_once '../core/classes/User.php';
+    require_once '../core/classes/List.php';
+    require_once '../core/classes/Task.php';
     
-    /* Get user data. */
+    $getFromU = new User();
+    /* Get user data. */   
     $user_id = $_SESSION['user_id'];
     $user = $getFromU->userData($user_id);
-    if($getFromU->loggedIn() === false)  {
-        header('Location: php/welcome.php');
-    }
 
+    $todolist = new Todolist();
     /* Get list data. */
     $listBy = $user_id;
     $list_id = $_GET['list_id'];
-    $list = $getFromL->listData($list_id);
+    $list = $todolist->listData($list_id);
     
     /* Check if add task btn is clicked. */
     if(isset($_POST['addtask'])) {
-        $task = $getFromU->checkInput($_POST['tasktask']);
-        $taskImage = '';
-        $task = ucfirst($task);
-        $duration = $getFromU->checkInput($_POST['taskduration']);
-        $deadline = $getFromU->checkInput($_POST['taskdeadline']);
+        $taskTitle  = checkInput($_POST['tasktask']);
+        $taskTitle  = ucfirst($taskTitle);
+        $taskImage = $_FILES['taskImage'];
+        $duration  = checkInput($_POST['taskduration']);
+        $deadline  = checkInput($_POST['taskdeadline']);
 
-        //var_dump($list_id);
-        //var_dump($list);
-        //var_dump($deadline);
-        //$taskImage = $getFromU->checkInput($_POST['taskImage']);
-        //var_dump($deadline);
-        //var_dump($_FILES['file'']);
+        $taskerror = '';
+
+        $task = new Task();
 
         /* Check if task and duration is not empty. */
-        if(!empty($task) AND !empty($duration)) {
+        if(!empty($tasTitle) AND !empty($duration)) {
             /* Check the length of task. */
-            if(strlen($task) > 40) {
+            if(strlen($taskTitle) > 40) {
                 $taskerror = "The task is too long.";
             }
             /* Check if task is already in list. */
-            else if ($getFromT->checkTask($task) === true) {
+            else if ($task->checkTask($taskTitle) === true) {
                 $taskerror = "This task is already in the list.";
             }
             /* Check if deadline is in future. */
@@ -44,24 +43,21 @@
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
-
-                else {
-                    if(!empty($_FILES['file']['name'][0])) {
-                        $fileRoot = $getFromT->uploadImage($_FILES['file']);                    
-                    }
-                    $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/,'taskIn' => $list_id,'taskStatus' => 'TO DO','taskActive' => 1));
+            }
+            //else if(!empty($taskImage)) {
+                $fileRoot = uploadImage($taskImage);
+                if ($fileRoot instanceof Exception) {
+                    $taskerror = $fileRoot->getMessage();
                 }
-            }
-            else {
-                if(!empty($_FILES['file']['name'][0])) {
-                    $fileRoot = $getFromT->uploadImage($_FILES['file']);      
-                }          
-                $getFromL->create('tasks', array('task' => $task, 'duration' => $duration , 'deadline' => $deadline/*, `taskImage` => $fileRoot*/, 'taskIn' => $list_id,'taskStatus' => 'TO DO', 'taskActive' => 1));
-            }
-           
+            //}                   
+
         }
         else {
             $taskerror = "You forgot to fill in the task or the duration. 😅";
+        }
+         /* Wanneer geen errors, dan pas toevoegen taak in DB. */
+         if($taskerror === '') {
+            $task->createTask('lists', array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
         }
 
     }
@@ -132,7 +128,7 @@
 
                             <?php
                                 /* Display the tasks in the list. */
-                                $getFromT->tasks($user_id, $listBy, $list_id);
+                                $todolist->getTodoListTasks($user_id, $listBy, $list_id);
                             ?>
 
                         </div>                  
@@ -146,6 +142,5 @@
     <script src="../assets/js/delete.js" ></script>
     <script src="../assets/js/status.js" ></script>
     <script src="../assets/js/mindate.js"></script>
-    <script src="../assets/js/edit.js"   ></script>
 </body>
 </html>
