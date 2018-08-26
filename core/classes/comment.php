@@ -1,12 +1,27 @@
 <?php
      //met extends krijgen de taken info uit de user list
-    class Comment extends User {
+    class Comment {
        
         protected $db;
 
         /* zo kan deze klasse aan de db. */
         public function __construct() {
             $this->db = Database::getInstance();
+        }
+
+        /* Function to create table in db. */
+        public function createComment($table, $fields = array()) {
+            $columns = implode(',', array_keys($fields));
+            $values  = ':'.implode(', :', array_keys($fields));
+            $sql     = "INSERT INTO {$table} ({$columns}) VALUES ({$values})";
+            /*var_dump($sql);*/
+            if($stmt = $this->db->getPDO()->prepare($sql)){
+                foreach ($fields as $key => $data) {
+                    $stmt->bindValue(':'.$key, $data);
+                }  
+                $stmt->execute();
+                return $this->db->getPDO()->lastInsertId();
+            }
         }
 
         /* Function that returns comments. */
