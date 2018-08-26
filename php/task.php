@@ -1,6 +1,6 @@
 <?php
 
-    include '../core/init.php';
+    require_once '../core/init.php';
     require_once '../core/classes/User.php';
     require_once '../core/classes/List.php';
     require_once '../core/classes/Task.php';

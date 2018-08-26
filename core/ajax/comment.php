@@ -15,7 +15,7 @@
 
         if(!empty($commentText)){
             $comment->createComment('comments', array('comment' => $commentText, 'commentOn' => $task_id, 'commentBy' => $user_id, 'commentAt' => date('Y-m-d H:i:s'), 'commentActive' => 1));
-            $getComments = $comment->getComments($task_id);
+            $comments = $comment->getComments($task_id);
             //$task = $getFromT->tasks($user_id, $listBy); 
 
             foreach ($comments as $comment) {

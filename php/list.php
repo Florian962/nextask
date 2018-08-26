@@ -60,7 +60,6 @@
          if($taskerror === '') {
             $task->createTask('tasks', array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
         }
-
     }
     
 ?><!DOCTYPE html>
