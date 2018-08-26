@@ -34,16 +34,7 @@
             $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
             $stmt->execute();
 
-            $lists = $stmt->fetchAll(PDO::FETCH_OBJ);
-
-            foreach($lists as $list) {
-                echo '
-                <article class="list">
-                    <a href="'.BASE_URL.'php/list.php?list_id='.$list->list_id.'" class="list__title"><h3>'.$list->listtitle.'</h3></a>
-                    <a href="#" class="list__delete" data-list="'.$list->list_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="bin"></a>           
-                </article>    
-                ';
-            }
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
         /* Function to delete a list. */

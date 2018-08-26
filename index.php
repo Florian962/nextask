@@ -15,6 +15,9 @@
     /* Get list data. */
     $listBy = $user_id;
 
+    /* Display lists. */
+    $lists = $todolist->getLists($user_id, $listBy);
+
     /* Check if add list btn is clicked. */
     if(isset($_POST['addlist'])) {
         $listtitle = checkInput($_POST['listtitle']);
@@ -85,11 +88,14 @@
                 <input class="addlist__form--submit" name="addlist" type="submit" value="Add list">
             </form>
         </section>
-        <section class="lists">
-                    <?php
-                        /* Display lists. */
-                        $todolist->getLists($user_id, $listBy);
-                    ?>      
+        <section class="lists">      
+            <?php foreach($lists as $list): ?>
+                
+                <article class="list">
+                    <a href="<?= BASE_URL ?>php/list.php?list_id=<?= $list->list_id ?>" class="list__title"><h3><?= $list->listtitle ?></h3></a>
+                    <a href="#" class="list__delete" data-list="<?= $list->list_id ?>"><img src="<?= BASE_URL ?>assets/images/bin.png" alt="bin" class="bin"></a>           
+                </article>    
+            <?php endforeach; ?>
           
         </section>
     <main>
