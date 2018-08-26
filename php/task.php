@@ -87,19 +87,15 @@
 
                                 <?php
                                     /* Display the comments */
-                                    foreach ($comments as $comment) {
-                                        echo '
+                                    foreach ($comments as $comment): ?>
                                         <div class="comments__comment">
                                             <img src="../assets/images/profileIcon.png" class="comments__comment--profileIcon" alt="profileIcon">
-                                            <p>'.$comment->comment.'</p>
-                                            <a href="#" class="comment__delete" data-comment="'.$comment->comment_id.'"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></img></a>
+                                            <p><?=$comment->comment ?></p>
+                                            <a href="#" class="comment__delete" data-comment="<?= $comment->comment_id ?>"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></img></a>
 
                                         </div>
-                                        
-                                        ';
-                                    }
-                                ?>
-                                </div>
+                                    
+                                <?php endforeach; ?>
                             </div>
                         </div>            
                 </article>        
