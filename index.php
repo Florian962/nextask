@@ -5,7 +5,7 @@
     include 'core/classes/User.php';
 
     $getFromU = new User();
-    $list = new TodoList();
+    $todolist = new TodoList();
     
     /* Get user data. */
     $user_id = $_SESSION['user_id'];
@@ -27,7 +27,7 @@
                 $listerror = "Fill in a title with less than 50 characters.";
             }
             else {
-                $list->createList('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
+                $todolist->createList('lists', array('listtitle' => $listtitle, 'listBy' => $user_id, 'listPostedOn' => date('Y-m-d H:i'), 'listActive' => 1));
                 
             }
         }
@@ -88,7 +88,7 @@
         <section class="lists">
                     <?php
                         /* Display lists. */
-                        $list->lists($user_id, $listBy);
+                        $todolist->getLists($user_id, $listBy);
                     ?>      
           
         </section>
