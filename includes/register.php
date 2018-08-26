@@ -1,6 +1,9 @@
 <?php
+    require_once '../core/classes/User.php';
 
     if(isset($_POST['register'])){
+        $getFromU = new User();
+
         $username = $_POST['username-new'];
         $email    = $_POST['email-new'];
 
