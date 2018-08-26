@@ -96,49 +96,12 @@
                 $stmt->bindParam(":comment_id", $comment_id, PDO::PARAM_INT);
                 $stmt->execute();
         }
-
-
-
-
-                
-
-        
-
-
-
-        /* Function that returns tasks. */
-         public function tasks($user_id, $listBy, $list_id) {
-            $stmt = $this->db->getPDO()->prepare("SELECT * FROM `tasks`, `lists`, `users` WHERE `taskIn` = `list_id` AND `listBy` = :user_id AND `user_id` = :listBy AND `list_id` = :list_id AND taskActive = 1 ORDER BY `deadline` ASC");
-            $stmt->bindParam(":user_id", $user_id, PDO::PARAM_INT);
-            $stmt->bindParam(":listBy", $listBy, PDO::PARAM_INT);
-            $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $tasks = $stmt->fetchAll(PDO::FETCH_OBJ);
-        
-            foreach ($tasks as $task) {
-                echo '
-                    <div class="task__block--hover">
-                        <a class="task__block--task fat-text" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->task.'</a>
-                        <a class="task__block--duration" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->duration.' hours</a>
-                        ';
-                        if($task->deadline != 0) {
-                            echo '<a class="task__block--deadline" href="'.BASE_URL.'php/task.php?task_id='.$task->task_id.'&list_id='.$list_id.'">'.$task->deadline.'</a>';
-                        }
-                echo '
-                        <a href="#" class="task__block--status" data-task="'.$task->task_id.'">'.$task->taskStatus.'</a>
-                        <a href="#" class="task__delete" data-task="'.$task->task_id.'"><img src="'.BASE_URL.'assets/images/bin.png" alt="bin" class="taskbin"></a>
-                    </div>
-                ';
-            }
-        }        
-
         /* Function that returns list data. */
         public function listData($list_id) {
             $stmt = $this->db->getPDO()->prepare("SELECT * FROM `lists` WHERE `list_id` = :list_id");
             $stmt->bindParam(":list_id", $list_id, PDO::PARAM_INT);
             $stmt->execute();
-        
+
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 

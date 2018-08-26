@@ -22,8 +22,9 @@
         if(in_array($ext, $allowed_ext) === true) {
             if($fileError === 0) {
                 if($fileSize <= 209272152) {
-                    $fileRoot =  $_SERVER['DOCUMENT_ROOT'] . '/users/' . $filename;
+                    $fileRoot =  $_SERVER['DOCUMENT_ROOT'] . '/nextask/users/' . $filename;
                     move_uploaded_file($fileTmp, $fileRoot);
+                    
                     return $fileRoot;
                 }
                 else {

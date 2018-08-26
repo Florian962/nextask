@@ -8,6 +8,7 @@ $(function(){
         delTarget = this;
         $.post('http://localhost/nextask/core/ajax/listdelete.php', {deleteList:list_id}, function(data) {
             $(delTarget).parent().slideUp();
+            $(delTarget).parent().remove();
             
         });
     });
@@ -20,6 +21,7 @@ $(function(){
         delTarget = this;
         $.post('http://localhost/nextask/core/ajax/taskdelete.php', {deleteTask:task_id}, function(data) {
             $(delTarget).parent().slideUp();
+            $(delTarget).parent().remove();
             
         });
     });
@@ -33,6 +35,7 @@ $(function(){
             delTarget = this;
             $.post('http://localhost/nextask/core/ajax/commentdelete.php', {deleteComment:comment_id}, function(data) {
                 $(delTarget).parent().slideUp();
+                $(delTarget).parent().remove();
                 
         });
         });

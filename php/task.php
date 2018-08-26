@@ -24,9 +24,11 @@
     /* Get task data */
     $task_id = $_GET['task_id'];
 
+    $tasks = $comment->getTaskToComment($user_id, $listBy, $list_id, $task_id);
+
     /* Get comment data */
     $comments = $comment->getComments($task_id);
-
+    
     //var_dump($list_id);
     //var_dump($comments);
 ?><!DOCTYPE html>
@@ -77,12 +79,44 @@
         <section class="lists">
                 <article class="list">
                     <h3 class="task__title"><a href="list.php?list_id=<?php echo $list->list_id ?>"><?php echo $list->listtitle ?></a></h3>
-                    <a href="#" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
+                    <a href="../index.php" class="list__delete" data-list="<?php echo $list->list_id ?>"><img src="<?php echo constant('BASE_URL'); ?>assets/images/bin.png" alt="bin" class="bin"></a>
                         <div class="task__block">
-                            <?php
-                                /* Display the tasks */
-                                $comment->taskToComment($user_id, $listBy, $list_id, $task_id);
-                            ?>
+                            
+                            <?php foreach($tasks as $task): ?>
+                                <?php
+                                    $deadline = $task->deadline;
+                                    $dateToday = date("Y-m-d"); 
+                                    /* SOURCE: https://stackoverflow.com/questions/676824/how-to-calculate-the-difference-between-two-dates-using-php */
+                                    $diff = strtotime($deadline) - strtotime($dateToday);
+                                    $years = floor($diff / (365*60*60*24));
+                                    $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
+                                    $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+                                ?>
+                                <div class="task__block--hover task__block--bottom">
+                                    <a href="edittask.php?task_id=<?= $task->task_id ?>&list_id=<?= $list_id ?>" class="task__block--edit"><img src="<?= BASE_URL ?>assets/images/edit.png" alt="Edit" class="taskbin"></a>
+                                    <p class="task__block--task fat-text"><?= $task->task ?></p>
+                                    <p class="task__block--duration"><?= $task->duration ?> hours</p>
+
+                                    <?php if($task->deadline != 0): ?>
+                                        <p class="task__block--deadline"><?= $task->deadline ?></p>
+
+                                        <?php if($diff <0): ?>
+                                            <p class="task__block--time danger">Deadline expired!</p>
+                                        <?php elseif($days < 20): ?>
+                                            <p class="task__block--time"><?= $days ?> days remaining.</p>';
+                                        <?php endif; ?>
+
+                                    <?php endif; ?>
+
+                                    <a href="#" class="task__block--status" data-task="<?= $task->task_id ?>"><?= $task->taskStatus ?></a>
+                                    <a href="list.php?list_id=<?= $task->list_id ?>" class="task__delete" data-task="<?= $task->task_id ?>"><img src="<?= BASE_URL ?>assets/images/bin.png" alt="bin" class="taskbin"></a>
+                                </div>
+                                    <?php if(!empty($task->taskImage)): ?>
+                                        <img class="taskImageDisplay" src="<?= $task->taskImage ?>" alt="">
+                                    <?php endif; ?>
+                                  
+                            <?php endforeach; ?>
+
                             <div class="task__block--comments">
 
                                 <?php
@@ -91,7 +125,7 @@
                                         <div class="comments__comment">
                                             <img src="../assets/images/profileIcon.png" class="comments__comment--profileIcon" alt="profileIcon">
                                             <p><?=$comment->comment ?></p>
-                                            <a href="#" class="comment__delete" data-comment="<?= $comment->comment_id ?>"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></img></a>
+                                            <a href="#" class="comment__delete" data-comment="<?= $comment->comment_id ?>"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></a>
 
                                         </div>
                                     
