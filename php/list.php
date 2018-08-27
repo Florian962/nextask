@@ -138,12 +138,15 @@
                             <?php foreach ($tasks as $task):?>
                                 <?php 
                                     $deadline = $task->deadline;
+
                                     $dateToday = date("Y-m-d"); 
                                     /* SOURCE: https://stackoverflow.com/questions/676824/how-to-calculate-the-difference-between-two-dates-using-php */
                                     $diff = strtotime($deadline) - strtotime($dateToday);
                                     $years = floor($diff / (365*60*60*24));
                                     $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
                                     $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
+
+                                    
                                 ?>
                                 
                                 <div class="task__block--hover">
@@ -155,7 +158,7 @@
                                         <a class="task__block--deadline" href="<?= BASE_URL ?>php/task.php?task_id=<?= $task->task_id ?>&list_id=<?= $list_id ?>"><?= $task->deadline ?></a>
                                         <?php if ($diff <0): ?>
                                             <p class="task__block--time danger">Deadline expired!</p>
-                                        <?php elseif($days < 20): ?>
+                                        <?php elseif($diff < 1500000 && $days < 20): ?>
                                             <p class="task__block--time"><?= $days ?> days remaining.</p>
                                         <?php endif; ?>
                                     <?php endif; ?>
