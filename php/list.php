@@ -47,7 +47,12 @@
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
             }
-            var_dump($taskImage['name']);
+            if(empty($deadline)) {
+                $date = new DateTime();
+                $date->setDate(9999, 12, 31);
+                $deadline = $date->format('Y-m-d');
+            }
+            //var_dump($taskImage['name']);
             if(!empty($taskImage['name'])) {
                 $fileRoot = uploadImage($taskImage);
                 //var_dump($fileRoot);
@@ -154,7 +159,7 @@
                                     <a class="task__block--task fat-text underline" href="<?= BASE_URL ?>php/task.php?task_id=<?= $task->task_id ?>&list_id=<?= $list_id ?>"><?= $task->task ?></a>
                                     <a class="task__block--duration" href="<?= BASE_URL ?>php/task.php?task_id=<?= $task->task_id ?>&list_id=<?= $list_id ?>"><?= $task->duration ?> hours</a>
                                     
-                                    <?php if($task->deadline != 0): ?>
+                                    <?php if($task->deadline != "9999-12-31" && $task->deadline != 0): ?>
                                         <a class="task__block--deadline" href="<?= BASE_URL ?>php/task.php?task_id=<?= $task->task_id ?>&list_id=<?= $list_id ?>"><?= $task->deadline ?></a>
                                         <?php if ($diff <0): ?>
                                             <p class="task__block--time danger">Deadline expired!</p>
