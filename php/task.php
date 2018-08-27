@@ -103,7 +103,7 @@
                                         <?php if($diff <0): ?>
                                             <p class="task__block--time danger">Deadline expired!</p>
                                         <?php elseif($days < 20): ?>
-                                            <p class="task__block--time"><?= $days ?> days remaining.</p>';
+                                            <p class="task__block--time"><?= $days ?> days remaining.</p>
                                         <?php endif; ?>
 
                                     <?php endif; ?>
