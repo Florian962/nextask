@@ -23,6 +23,7 @@
                 <div class="comments__comment">
                     <img src="../assets/images/profileIcon.png" alt="profileIcon">
                     <p>'.$comment->comment.'</p>
+                    <a href="#" class="comment__delete" data-comment="'.$comment->comment_id.'"><img src="../assets/images/bin2.png" alt="bin" class="commentbin"></a>
                     <div></div>
                 </div>
                 
