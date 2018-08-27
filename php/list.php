@@ -16,8 +16,7 @@
     $list_id = $_GET['list_id'];
     $list = $todolist->listData($list_id);
 
-    /* Display tasks. */
-    $tasks = $todolist->getTodoListTasks($user_id, $listBy, $list_id);
+    
     
     /* Check if add task btn is clicked. */
     if(isset($_POST['addtask'])) {
@@ -43,13 +42,15 @@
                 $taskerror = "This task is already in the list.";
             }
             /* Check if deadline is in future. */
-            else if(!empty($deadline)) {
+            if(!empty($deadline)) {
                 if( strtotime($deadline) < time() ) {
                     $taskerror = "Fill in a deadline that's in the future!";
                 }
             }
-            else if(!empty($taskImage)) {
+            var_dump($taskImage['name']);
+            if(!empty($taskImage['name'])) {
                 $fileRoot = uploadImage($taskImage);
+                //var_dump($fileRoot);
                 if ($fileRoot instanceof Exception) {
                     $taskerror = $fileRoot->getMessage();
                 }
@@ -61,9 +62,14 @@
         }
          /* Wanneer geen errors, dan pas toevoegen taak in DB. */
          if($taskerror === '') {
+            //$taskerror ="geen errors";
+            
             $task->createTask('tasks', array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
         }
     }
+
+    /* Display tasks. */
+    $tasks = $todolist->getTodoListTasks($user_id, $listBy, $list_id);
     
 ?><!DOCTYPE html>
 <html lang="en">
