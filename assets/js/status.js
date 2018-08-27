@@ -1,5 +1,6 @@
 $(function(){
-    $(document).on('click', '.task__block--status', function(){
+    $(document).on('click', '.task__block--status', function(e){
+        e.preventDefault();
         console.log('clicked');
         var task_id = $(this).data('task');
         //task__delete is delTarget

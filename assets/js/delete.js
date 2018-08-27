@@ -1,7 +1,8 @@
 $(function(){
 
     /* LIJSTEN VERWIJDEREN */
-    $(document).on('click', '.list__delete', function(){
+    $(document).on('click', '.list__delete', function(e){
+        e.preventDefault();
         console.log('clicked');
         var list_id = $(this).data('list');
         //list__delete is delTarget
@@ -14,7 +15,8 @@ $(function(){
     });
 
     /* TAKEN VERWIJDEREN */
-    $(document).on('click', '.task__delete', function(){
+    $(document).on('click', '.task__delete', function(e){
+        e.preventDefault();
         console.log('clicked');
         var task_id = $(this).data('task');
         //task__delete is delTarget
@@ -27,7 +29,8 @@ $(function(){
     });
 
         /* COMMENTS VERWIJDEREN */
-        $(document).on('click', '.comment__delete', function(){
+        $(document).on('click', '.comment__delete', function(e){
+            e.preventDefault();
             console.log('clicked');
             var comment_id = $(this).data('comment');
             console.log(comment_id);
