@@ -522,7 +522,7 @@ nav {
     
 }
 .commentbin {
-    margin-top: 25px;
+    margin-top: 16px;
     width:17px;
 }
 .list__block a {
@@ -534,13 +534,14 @@ nav {
     background: var(--green);
     grid-column: 1 / -1;
     border-radius: 1em;
+    padding-bottom: 0.5em;
     
 }
 .comments__comment {
     display:grid;
     grid-template-columns: 100px 1fr 1fr;
     justify-items: start;
-    padding-bottom: 1em;
+    padding: 0.5em;
 }
 .comments__comment--profileIcon {
     margin-left: 1em;
