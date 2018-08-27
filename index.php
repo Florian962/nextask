@@ -16,7 +16,7 @@
     $listBy = $user_id;
 
     /* Display lists. */
-    $lists = $todolist->getLists($user_id, $listBy);
+
 
     /* Check if add list btn is clicked. */
     if(isset($_POST['addlist'])) {
@@ -38,7 +38,7 @@
             $listerror = "Please fill in a title for your list.";
         }
     }
-
+    $lists = $todolist->getLists($user_id, $listBy);
     //var_dump($_SESSION['user_id']);*/
     //$getFromU->delete('lists', array('list_id' => '6'));
     //header('Location: php/list.php?list_id='..'');
