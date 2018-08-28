@@ -23,7 +23,7 @@
     /* Get task data */
     $task_id = $_GET['task_id'];
 
-    $tasks = $comment->getTaskToComment($user_id, $listBy, $list_id, $task_id);
+    
 
     //var_dump($task_id);
     //var_dump($list_id);
@@ -78,8 +78,10 @@
          /* Wanneer geen errors, dan pas toevoegen taak in DB. */
          if($taskerror === '') {
             $task->updateTask('tasks', $task_id, array('task' => $taskTitle, 'duration' => $duration , 'deadline' => $deadline, 'taskImage' => $fileRoot, 'taskIn' => $list_id, 'taskStatus' => 'TO DO', 'taskActive' => 1));
-        }
+        }   
     }
+
+    $tasks = $comment->getTaskToComment($user_id, $listBy, $list_id, $task_id);
 
 ?><!DOCTYPE html>
 <html lang="en">
